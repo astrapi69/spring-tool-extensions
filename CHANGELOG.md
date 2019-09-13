@@ -1,8 +1,12 @@
 ## Change log
 ----------------------
 
-Version 1.2-SNAPSHOT
+Version 1.1.1
 -------------
+
+CHANGED:
+
+- added getter methods for mapper and service to AbstractRestController
 
 Version 1.1
 -------------

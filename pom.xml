@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>5.2</version>
+		<version>5</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>spring-tool-extensions</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.1.1</version>
 
 	<name>${project.artifactId}</name>
 
