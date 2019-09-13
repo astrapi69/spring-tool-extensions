@@ -41,8 +41,10 @@ import de.alpharogroup.mapstruct.mapper.GenericMapper;
 import de.alpharogroup.spring.service.api.GenericService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+@Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
