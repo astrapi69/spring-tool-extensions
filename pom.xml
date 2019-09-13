@@ -32,7 +32,7 @@
 	<properties>
 		<!-- COMMONS-LANG3 version -->
 		<commons-lang3.version>3.9</commons-lang3.version>
-		<spring.version>5.1.6.RELEASE</spring.version>
+		<spring.version>5.1.9.RELEASE</spring.version>
 		<spring-data-jpa.version>2.1.10.RELEASE</spring-data-jpa.version>
 		<spring-batch.version>4.1.2.RELEASE</spring-batch.version>
 		<javax.persistence-api.version>2.2</javax.persistence-api.version>
