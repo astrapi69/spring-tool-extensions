@@ -11,8 +11,8 @@
 	</parent>
 
 	<artifactId>spring-tool-extensions</artifactId>
-	<version>1</version>
-	
+	<version>1.1</version>
+
 	<name>${project.artifactId}</name>
 
 	<description>
@@ -32,15 +32,19 @@
 	<properties>
 		<!-- COMMONS-LANG3 version -->
 		<commons-lang3.version>3.9</commons-lang3.version>
-		<spring.version>5.1.6.RELEASE</spring.version>
+		<spring.version>5.1.9.RELEASE</spring.version>
+		<spring-data-jpa.version>2.1.10.RELEASE</spring-data-jpa.version>
 		<spring-batch.version>4.1.2.RELEASE</spring-batch.version>
 		<javax.persistence-api.version>2.2</javax.persistence-api.version>
+
 		<!-- JOBJ-CORE version -->
 		<jobj-core.version>3.2.1</jobj-core.version>
+		<!-- JOBJECT-COPY versions -->
+		<jobject-copy.version>3.1.2</jobject-copy.version>
 		<!-- SILLY-COLLECTIONS version -->
 		<silly-collections.version>5.2.1</silly-collections.version>
 	</properties>
-	
+
 	<scm>
 		<connection>scm:git:git:@github.com:astrapi69/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:astrapi69/${project.artifactId}.git</developerConnection>
@@ -55,11 +59,29 @@
 	<issueManagement>
 		<system>github</system>
 		<url>https://github.com/astrapi69/${project.artifactId}/issues</url>
-	</issueManagement>	
+	</issueManagement>
 
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- JOBJECT-COPY DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobject-copy</artifactId>
+				<version>${jobject-copy.version}</version>
+			</dependency>
+			<!-- SPRING-DATA-JPA DEPENDENCY -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring-data-jpa.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 			<!-- SILLY-COLLECTIONS DEPENDENCY -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
@@ -100,6 +122,12 @@
 				<artifactId>spring-jdbc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<!-- SPRING-WEB DEPENDENCY -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 			<!-- SPRING-BATCH-INFRASTRUCTURE DEPENDENCY -->
 			<dependency>
 				<groupId>org.springframework.batch</groupId>
@@ -124,6 +152,16 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- JOBJECT-COPY DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>jobject-copy</artifactId>
+		</dependency>
+		<!-- SPRING-DATA-JPA DEPENDENCY -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
 		<!-- SILLY-COLLECTIONS DEPENDENCY -->
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
@@ -148,6 +186,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<!-- SPRING-WEB DEPENDENCY -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

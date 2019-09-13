@@ -1,3 +1,27 @@
+/**
+ * The MIT License
+ *
+ * Copyright (C) 2015 Asterios Raptis
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package de.alpharogroup.spring.batch.factory;
 
 import java.time.format.DateTimeFormatter;
@@ -21,39 +45,41 @@ import de.alpharogroup.spring.batch.mapper.CustomBeanWrapperFieldSetMapper;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class SpringBatchObjectFactory {
+public class SpringBatchObjectFactory
+{
 
 	private static final String READER_SUFFIX = "Reader";
 
-	public static <T> JdbcBatchItemWriter<T> newJdbcBatchItemWriter(DataSource dataSource, String sql){
+	public static <T> JdbcBatchItemWriter<T> newJdbcBatchItemWriter(DataSource dataSource,
+		String sql)
+	{
 		return new JdbcBatchItemWriterBuilder<T>()
-        .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-        .sql(sql)
-        .dataSource(dataSource)
-        .build();
+			.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+			.sql(sql).dataSource(dataSource).build();
 	}
 
-	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource, Class<T> typeClass,
-		String delimiter, int linesToSkip) {
-		return newCsvFileItemReader(resource, typeClass, new CustomBeanWrapperFieldSetMapper<>(typeClass, DateTimeFormatter
-			.ofPattern("dd-MM-yyyy")), delimiter, linesToSkip);
+	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource,
+		Class<T> typeClass, String delimiter, int linesToSkip)
+	{
+		return newCsvFileItemReader(resource, typeClass, new CustomBeanWrapperFieldSetMapper<>(
+			typeClass, DateTimeFormatter.ofPattern("dd-MM-yyyy")), delimiter, linesToSkip);
 	}
 
-	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource, Class<T> typeClass,
-		FieldSetMapper<T> fieldSetMapper, String delimiter, int linesToSkip) {
+	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource,
+		Class<T> typeClass, FieldSetMapper<T> fieldSetMapper, String delimiter, int linesToSkip)
+	{
 		DefaultLineMapper<T> lineMapper = new DefaultLineMapper<>();
 		String[] fieldNames = ReflectionExtensions.getDeclaredFieldNames(typeClass);
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer(delimiter);
 		delimitedLineTokenizer.setNames(fieldNames);
 		lineMapper.setFieldSetMapper(fieldSetMapper);
 		lineMapper.setLineTokenizer(delimitedLineTokenizer);
-		return new FlatFileItemReaderBuilder<T>()
-			.name(typeClass.getSimpleName() + READER_SUFFIX)
-			.resource(resource)
-			.lineMapper(lineMapper).linesToSkip(linesToSkip).build();
+		return new FlatFileItemReaderBuilder<T>().name(typeClass.getSimpleName() + READER_SUFFIX)
+			.resource(resource).lineMapper(lineMapper).linesToSkip(linesToSkip).build();
 	}
 
-	public static <T> JpaItemWriter<T> newJpaItemWriter(EntityManagerFactory entityManagerFactory) {
+	public static <T> JpaItemWriter<T> newJpaItemWriter(EntityManagerFactory entityManagerFactory)
+	{
 		JpaItemWriter<T> writer = new JpaItemWriter<>();
 		writer.setEntityManagerFactory(entityManagerFactory);
 		return writer;

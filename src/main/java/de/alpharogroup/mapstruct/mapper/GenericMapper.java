@@ -22,36 +22,13 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.spring.datasource;
+package de.alpharogroup.mapstruct.mapper;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-/**
- * The class {@link DataSourceBean}.
- */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder(toBuilder = true)
-public class DataSourceBean
+public interface GenericMapper<ENTITY, DTO>
 {
 
-	/** The default h2 builder as start point to build a new DataSourceBean. */
-	public static final DataSourceBean DEFAULT_H2_BUILDER = DataSourceBean.builder()
-		.driverClassName("org.h2.Driver").username("sa").password("").build();
+	DTO toDto(ENTITY entity);
 
-	/** The driver class name. */
-	private String driverClassName;
+	ENTITY toEntity(DTO dto);
 
-	/** The password. */
-	private String password;
-
-	/** The url. */
-	private String url;
-
-	/** The username. */
-	private String username;
 }
