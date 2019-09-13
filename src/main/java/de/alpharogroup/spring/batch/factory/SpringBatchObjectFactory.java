@@ -45,39 +45,41 @@ import de.alpharogroup.spring.batch.mapper.CustomBeanWrapperFieldSetMapper;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class SpringBatchObjectFactory {
+public class SpringBatchObjectFactory
+{
 
 	private static final String READER_SUFFIX = "Reader";
 
-	public static <T> JdbcBatchItemWriter<T> newJdbcBatchItemWriter(DataSource dataSource, String sql){
+	public static <T> JdbcBatchItemWriter<T> newJdbcBatchItemWriter(DataSource dataSource,
+		String sql)
+	{
 		return new JdbcBatchItemWriterBuilder<T>()
-        .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-        .sql(sql)
-        .dataSource(dataSource)
-        .build();
+			.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+			.sql(sql).dataSource(dataSource).build();
 	}
 
-	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource, Class<T> typeClass,
-		String delimiter, int linesToSkip) {
-		return newCsvFileItemReader(resource, typeClass, new CustomBeanWrapperFieldSetMapper<>(typeClass, DateTimeFormatter
-			.ofPattern("dd-MM-yyyy")), delimiter, linesToSkip);
+	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource,
+		Class<T> typeClass, String delimiter, int linesToSkip)
+	{
+		return newCsvFileItemReader(resource, typeClass, new CustomBeanWrapperFieldSetMapper<>(
+			typeClass, DateTimeFormatter.ofPattern("dd-MM-yyyy")), delimiter, linesToSkip);
 	}
 
-	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource, Class<T> typeClass,
-		FieldSetMapper<T> fieldSetMapper, String delimiter, int linesToSkip) {
+	public static <T> FlatFileItemReader<T> newCsvFileItemReader(Resource resource,
+		Class<T> typeClass, FieldSetMapper<T> fieldSetMapper, String delimiter, int linesToSkip)
+	{
 		DefaultLineMapper<T> lineMapper = new DefaultLineMapper<>();
 		String[] fieldNames = ReflectionExtensions.getDeclaredFieldNames(typeClass);
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer(delimiter);
 		delimitedLineTokenizer.setNames(fieldNames);
 		lineMapper.setFieldSetMapper(fieldSetMapper);
 		lineMapper.setLineTokenizer(delimitedLineTokenizer);
-		return new FlatFileItemReaderBuilder<T>()
-			.name(typeClass.getSimpleName() + READER_SUFFIX)
-			.resource(resource)
-			.lineMapper(lineMapper).linesToSkip(linesToSkip).build();
+		return new FlatFileItemReaderBuilder<T>().name(typeClass.getSimpleName() + READER_SUFFIX)
+			.resource(resource).lineMapper(lineMapper).linesToSkip(linesToSkip).build();
 	}
 
-	public static <T> JpaItemWriter<T> newJpaItemWriter(EntityManagerFactory entityManagerFactory) {
+	public static <T> JpaItemWriter<T> newJpaItemWriter(EntityManagerFactory entityManagerFactory)
+	{
 		JpaItemWriter<T> writer = new JpaItemWriter<>();
 		writer.setEntityManagerFactory(entityManagerFactory);
 		return writer;

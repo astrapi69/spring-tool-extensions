@@ -48,9 +48,24 @@ import lombok.experimental.FieldDefaults;
 public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 {
 
+	GenericMapper<T, D> mapper;
+
 	GenericService<T, ID, R> service;
 
-	GenericMapper<T, D> mapper;
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody Map<String, Object> delete(@PathVariable ID id)
+	{
+		this.service.deleteById(id);
+		Map<String, Object> map = MapFactory.newHashMap();
+		map.put("success", true);
+		return map;
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<D> get(@PathVariable ID id)
+	{
+		return ResponseEntity.ok(mapper.toDto(this.service.getOne(id)));
+	}
 
 	@RequestMapping
 	public @ResponseBody Iterable<T> listAll()
@@ -63,12 +78,6 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	{
 		T created = this.service.save(mapper.toEntity(json));
 		return ResponseEntity.ok(mapper.toDto(created));
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<D> get(@PathVariable ID id)
-	{
-		return ResponseEntity.ok(mapper.toDto(this.service.getOne(id)));
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = {
@@ -90,15 +99,6 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 		T updated = this.service.save(entity);
 
 		return ResponseEntity.ok(mapper.toDto(updated));
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody Map<String, Object> delete(@PathVariable ID id)
-	{
-		this.service.deleteById(id);
-		Map<String, Object> map = MapFactory.newHashMap();
-		map.put("success", true);
-		return map;
 	}
 
 }

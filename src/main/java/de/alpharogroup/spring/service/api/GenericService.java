@@ -24,29 +24,48 @@
  */
 package de.alpharogroup.spring.service.api;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.Optional;
 
 public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 {
-	R getRepository();
-
-	default <S extends T> S save(S entity)
+	default long count()
 	{
-		return getRepository().save(entity);
+		return getRepository().count();
 	}
 
-	default <S extends T> Iterable<S> saveAll(Iterable<S> entities)
+	default void delete(T entity)
 	{
-		return getRepository().saveAll(entities);
+		getRepository().delete(entity);
 	}
 
-	default Optional<T> findById(ID id)
+	default void deleteAll()
 	{
-		return getRepository().findById(id);
+		getRepository().deleteAll();
+	}
+
+	default void deleteAll(Iterable<? extends T> entities)
+	{
+		getRepository().deleteAll(entities);
+	}
+
+	default void deleteAllInBatch()
+	{
+		getRepository().deleteAllInBatch();
+	}
+
+	default void deleteById(ID id)
+	{
+		getRepository().deleteById(id);
+	}
+
+	default void deleteInBatch(Iterable<T> entities)
+	{
+		getRepository().deleteInBatch(entities);
 	}
 
 	default boolean existsById(ID id)
@@ -59,34 +78,9 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		return getRepository().findAll();
 	}
 
-	default Iterable<T> findAllById(Iterable<ID> ids)
+	default Page<T> findAll(Pageable pageable)
 	{
-		return getRepository().findAllById(ids);
-	}
-
-	default long count()
-	{
-		return getRepository().count();
-	}
-
-	default void deleteById(ID id)
-	{
-		getRepository().deleteById(id);
-	}
-
-	default void delete(T entity)
-	{
-		getRepository().delete(entity);
-	}
-
-	default void deleteAll(Iterable<? extends T> entities)
-	{
-		getRepository().deleteAll(entities);
-	}
-
-	default void deleteAll()
-	{
-		getRepository().deleteAll();
+		return getRepository().findAll(pageable);
 	}
 
 	default Iterable<T> findAll(Sort sort)
@@ -94,9 +88,14 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		return getRepository().findAll(sort);
 	}
 
-	default Page<T> findAll(Pageable pageable)
+	default Iterable<T> findAllById(Iterable<ID> ids)
 	{
-		return getRepository().findAll(pageable);
+		return getRepository().findAllById(ids);
+	}
+
+	default Optional<T> findById(ID id)
+	{
+		return getRepository().findById(id);
 	}
 
 	default void flush()
@@ -104,24 +103,26 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		getRepository().flush();
 	}
 
-	default <S extends T> S saveAndFlush(S entity)
-	{
-		return getRepository().saveAndFlush(entity);
-	}
-
-	default void deleteInBatch(Iterable<T> entities)
-	{
-		getRepository().deleteInBatch(entities);
-	}
-
-	default void deleteAllInBatch()
-	{
-		getRepository().deleteAllInBatch();
-	}
-
 	default T getOne(ID id)
 	{
 		return getRepository().getOne(id);
+	}
+
+	R getRepository();
+
+	default <S extends T> S save(S entity)
+	{
+		return getRepository().save(entity);
+	}
+
+	default <S extends T> Iterable<S> saveAll(Iterable<S> entities)
+	{
+		return getRepository().saveAll(entities);
+	}
+
+	default <S extends T> S saveAndFlush(S entity)
+	{
+		return getRepository().saveAndFlush(entity);
 	}
 
 }
