@@ -4,6 +4,12 @@
 Version 1.1-SNAPSHOT
 -------------
 
+ADDED:
+
+- new inteface for map entities to view models and back
+- new spring abstract rest controller created
+- new service interface created that delegates all calls to the JpaRepository
+
 Version 1
 -------------
 
