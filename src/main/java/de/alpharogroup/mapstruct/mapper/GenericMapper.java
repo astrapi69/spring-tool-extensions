@@ -24,11 +24,54 @@
  */
 package de.alpharogroup.mapstruct.mapper;
 
+import java.util.Collection;
+import java.util.List;
+
+/**
+ * The interface {@link GenericMapper} maps dto objects to entities and back
+ *
+ * @param <ENTITY>
+ *            the generic type of the entity object
+ * @param <DTO>
+ *            the generic type of the DTO object
+ */
 public interface GenericMapper<ENTITY, DTO>
 {
 
-	DTO toDto(ENTITY entity);
+	/**
+	 * Maps the given entity object to a DTO object
+	 *
+	 * @param entity
+	 *            the entity object
+	 * @return the DTO object
+	 */
+	DTO toDto(final ENTITY entity);
 
-	ENTITY toEntity(DTO dto);
+	/**
+	 * Maps the given collection of entity objects to a list of DTO objects
+	 *
+	 * @param entities
+	 *            the collection of entities objects
+	 * @return the list of DTO objects
+	 */
+	List<DTO> toDtos(final Collection<ENTITY> entities);
+
+	/**
+	 * Maps the given DTO object to a entity object
+	 *
+	 * @param dto
+	 *            the DTO object
+	 * @return the entity object
+	 */
+	ENTITY toEntity(final DTO dto);
+
+	/**
+	 * Maps the given collection of DTO objects to a list of entity objects
+	 *
+	 * @param dtos
+	 *            the collection of DTO objects
+	 * @return the list of entity objects
+	 */
+	List<ENTITY> toEntities(final Collection<DTO> dtos);
 
 }
