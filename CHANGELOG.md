@@ -1,6 +1,13 @@
 ## Change log
 ----------------------
 
+Version 1.2-SNAPSHOT
+-------------
+
+ADDED:
+
+- new methods for map colletions
+
 Version 1.1.1
 -------------
 
