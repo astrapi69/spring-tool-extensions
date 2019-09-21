@@ -1,6 +1,14 @@
 ## Change log
 ----------------------
 
+Version 1.2
+-------------
+
+ADDED:
+
+- new view model bean that holds data for exception representations
+- new factory class for create the view model bean for exception representations
+
 Version 1.1.2
 -------------
 

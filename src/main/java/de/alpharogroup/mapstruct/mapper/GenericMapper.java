@@ -57,15 +57,6 @@ public interface GenericMapper<ENTITY, DTO>
 	List<DTO> toDtos(final Collection<ENTITY> entities);
 
 	/**
-	 * Maps the given DTO object to a entity object
-	 *
-	 * @param dto
-	 *            the DTO object
-	 * @return the entity object
-	 */
-	ENTITY toEntity(final DTO dto);
-
-	/**
 	 * Maps the given collection of DTO objects to a list of entity objects
 	 *
 	 * @param dtos
@@ -73,5 +64,14 @@ public interface GenericMapper<ENTITY, DTO>
 	 * @return the list of entity objects
 	 */
 	List<ENTITY> toEntities(final Collection<DTO> dtos);
+
+	/**
+	 * Maps the given DTO object to a entity object
+	 *
+	 * @param dto
+	 *            the DTO object
+	 * @return the entity object
+	 */
+	ENTITY toEntity(final DTO dto);
 
 }
