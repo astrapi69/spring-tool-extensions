@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>spring-tool-extensions</artifactId>
-	<version>1.1.2</version>
+	<version>1.2-SNAPSHOT</version>
 
 	<name>${project.artifactId}</name>
 
@@ -36,13 +36,16 @@
 		<spring-data-jpa.version>2.1.10.RELEASE</spring-data-jpa.version>
 		<spring-batch.version>4.1.2.RELEASE</spring-batch.version>
 		<javax.persistence-api.version>2.2</javax.persistence-api.version>
-
+		<!-- JAVAX-SERVLET-API version -->
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<!-- JOBJ-CORE version -->
 		<jobj-core.version>3.2.1</jobj-core.version>
 		<!-- JOBJECT-COPY versions -->
 		<jobject-copy.version>3.1.2</jobject-copy.version>
 		<!-- SILLY-COLLECTIONS version -->
 		<silly-collections.version>5.2.1</silly-collections.version>
+		<!-- THROW-ABLE version -->
+		<throw-able.version>1.1</throw-able.version>
 	</properties>
 
 	<scm>
@@ -64,6 +67,13 @@
 	<dependencyManagement>
 
 		<dependencies>
+
+			<!-- JAVAX SERVLET DEPENDENCIES -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+			</dependency>
 			<!-- JOBJECT-COPY DEPENDENCY -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
@@ -87,6 +97,12 @@
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>silly-collections</artifactId>
 				<version>${silly-collections.version}</version>
+			</dependency>
+			<!-- THROW-ABLE DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>throw-able</artifactId>
+				<version>${throw-able.version}</version>
 			</dependency>
 			<!-- COMMONS-LANG3 DEPENDENCY -->
 			<dependency>
@@ -128,6 +144,11 @@
 				<artifactId>spring-web</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 			<!-- SPRING-BATCH-INFRASTRUCTURE DEPENDENCY -->
 			<dependency>
 				<groupId>org.springframework.batch</groupId>
@@ -152,10 +173,20 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- JAVAX SERVLET DEPENDENCIES -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
 		<!-- JOBJECT-COPY DEPENDENCY -->
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>jobject-copy</artifactId>
+		</dependency>
+		<!-- THROW-ABLE DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>throw-able</artifactId>
 		</dependency>
 		<!-- SPRING-DATA-JPA DEPENDENCY -->
 		<dependency>
@@ -191,6 +222,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
