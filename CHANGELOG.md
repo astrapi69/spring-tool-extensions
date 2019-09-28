@@ -4,6 +4,10 @@
 Version 1.3-SNAPSHOT
 -------------
 
+ADDED:
+
+- new custom generator class created from the SequenceStyleGenerator that can be used in the GenericGenerator
+
 Version 1.2
 -------------
 
