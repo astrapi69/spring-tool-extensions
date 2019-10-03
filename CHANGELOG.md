@@ -1,6 +1,14 @@
 ## Change log
 ----------------------
 
+Version 1.4
+-------------
+
+ADDED:
+
+- new factory class created for generate ParameterizedTypeReference for collection types
+- new class for create url for the rest template
+
 Version 1.3
 -------------
 
