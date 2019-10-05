@@ -4,6 +4,14 @@
 Version 1.5-SNAPSHOT
 -------------
 
+ADDED:
+
+- new dependency of swagger-annotations in version 1.5.20
+
+CHANGED:
+
+- added swagger documentation to the class AbstractRestController
+
 Version 1.4
 -------------
 

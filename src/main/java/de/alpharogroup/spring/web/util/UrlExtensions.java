@@ -24,7 +24,10 @@
  */
 package de.alpharogroup.spring.web.util;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import de.alpharogroup.collections.array.ArrayFactory;
@@ -34,6 +37,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class UrlExtensions
 {
+
 
 	public static String getBaseUrl(@NonNull final String scheme, @NonNull final String host,
 		int serverPort, @NonNull final String restVersion, @NonNull final String restPath)
@@ -105,5 +109,12 @@ public class UrlExtensions
 			}
 		}
 		return sb.toString();
+	}
+
+	public String expand(String uriTemplate, Map<String, ?> uriVars)
+	{
+		UriComponents uriComponents = UriComponentsBuilder.fromUriString(uriTemplate)
+			.buildAndExpand(uriVars);
+		return uriComponents.toUriString();
 	}
 }

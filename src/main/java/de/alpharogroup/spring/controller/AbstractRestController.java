@@ -25,7 +25,11 @@
 package de.alpharogroup.spring.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -55,14 +59,27 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	GenericService<T, ID, R> service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ApiOperation(value = "Delete the entity from the given id")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "the id from the entity to delete", paramType = "query") })
 	public @ResponseBody Map<String, Object> delete(@PathVariable ID id)
 	{
-		this.service.deleteById(id);
+		Optional<T> optionalEntity = this.service.findById(id);
 		Map<String, Object> map = MapFactory.newHashMap();
+		if(optionalEntity.isPresent()){
+			D dto = mapper.toDto(optionalEntity.get());
+			map.put("deleted-object", dto);
+			this.service.deleteById(id);
+		} else {
+			map.put("deleted-object", "not exists");
+		}
 		map.put("success", true);
 		return map;
 	}
 
+	@ApiOperation(value = "Get the entity from the given id")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<D> get(@PathVariable ID id)
 	{
@@ -70,11 +87,14 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	}
 
 	@RequestMapping
-	public @ResponseBody Iterable<T> listAll()
+	@ApiOperation(value = "Find all entities")
+	public @ResponseBody Iterable<T> findAll()
 	{
 		return this.service.findAll();
 	}
-
+	@ApiOperation(value = "Saves the given json object")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<D> save(@RequestBody D json)
 	{
@@ -82,11 +102,14 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 		return ResponseEntity.ok(mapper.toDto(created));
 	}
 
+	@ApiOperation(value = "Update the entity from the given id with the given new json object")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query"),
+		@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<D> update(@PathVariable ID id, @RequestBody D json)
 	{
-
 		T entity = this.service.getOne(id);
 		T toUpdate = mapper.toEntity(json);
 		try
