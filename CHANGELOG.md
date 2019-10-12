@@ -7,6 +7,8 @@ Version 1.5-SNAPSHOT
 ADDED:
 
 - new dependency of swagger-annotations in version 1.5.20
+- new factory method for FlatFileItemReader
+- new factory method for CustomBeanWrapperFieldSetMapper
 
 CHANGED:
 
