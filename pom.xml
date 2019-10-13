@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>5</version>
+		<version>5.3</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -52,6 +52,8 @@
 		<ent-api.version>1.3.1</ent-api.version>
 		<!-- SWAGGER-ANNOTATIONS version -->
 		<swagger-annotations.version>1.5.20</swagger-annotations.version>
+		<!-- GENERIC-MAPPER version -->
+		<generic-mapper.version>2</generic-mapper.version>
 	</properties>
 
 	<scm>
@@ -73,6 +75,12 @@
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- GENERIC-MAPPER DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>generic-mapper</artifactId>
+				<version>${generic-mapper.version}</version>
+			</dependency>
 			<!-- SWAGGER-ANNOTATIONS version -->
 			<dependency>
 				<groupId>io.swagger</groupId>
@@ -197,6 +205,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- GENERIC-MAPPER DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>generic-mapper</artifactId>
+		</dependency>
 		<!-- SWAGGER-ANNOTATIONS version -->
 		<dependency>
 			<groupId>io.swagger</groupId>

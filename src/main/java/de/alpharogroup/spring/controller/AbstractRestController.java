@@ -36,9 +36,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.alpharogroup.bean.mapper.GenericMapper;
 import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.copy.object.CopyObjectExtensions;
-import de.alpharogroup.mapstruct.mapper.GenericMapper;
 import de.alpharogroup.spring.service.api.GenericService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
