@@ -71,6 +71,24 @@ Than you can add the dependency to your dependencies:
 			...
 		</dependencies>
 
+	
+## gradle dependency
+
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of generic-mapper:
+
+```
+ext {
+			...
+	springToolExtensionsVersion = "1.5"
+			...
+}
+dependencies {
+			...
+	compile"de.alpharogroup:spring-tool-extensions:${springToolExtensionsVersion}"
+			...
+}
+```
+		
 ## Semantic Versioning
 
 The versions of spring-tool-extensions are maintained with the Simplified Semantic Versioning guidelines.
