@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 1.5-SNAPSHOT
+Version 1.5
 -------------
 
 ADDED:
@@ -9,12 +9,15 @@ ADDED:
 - new dependency of swagger-annotations in version 1.5.20 added
 - new factory method for FlatFileItemReader
 - new factory method for CustomBeanWrapperFieldSetMapper
-- new dependency of generic-mapper in version 2 added
+- new dependency of generic-mapper in version 2.2 added
+- new method for expand an url object
 
 CHANGED:
 
 - update of parent version to 5.5
 - added swagger documentation to the class AbstractRestController
+- moved interface GenericMapper to project generic-mapper
+- null safety added to all methods
 
 Version 1.4
 -------------
