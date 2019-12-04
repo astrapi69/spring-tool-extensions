@@ -80,6 +80,13 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 		return map;
 	}
 
+	@RequestMapping
+	@ApiOperation(value = "Find all entities")
+	public Iterable<T> findAll()
+	{
+		return this.service.findAll();
+	}
+
 	@ApiOperation(value = "Get the entity from the given id")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query") })
@@ -87,13 +94,6 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	public ResponseEntity<D> get(@PathVariable ID id)
 	{
 		return ResponseEntity.ok(mapper.toDto(this.service.getOne(id)));
-	}
-
-	@RequestMapping
-	@ApiOperation(value = "Find all entities")
-	public Iterable<T> findAll()
-	{
-		return this.service.findAll();
 	}
 
 	@ApiOperation(value = "Saves the given json object")

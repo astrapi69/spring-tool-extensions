@@ -13,6 +13,7 @@ ADDED:
 
 CHANGED:
 
+- update of parent version to 5.5
 - added swagger documentation to the class AbstractRestController
 
 Version 1.4
