@@ -48,6 +48,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.Valid;
+
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -99,10 +101,10 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	@ApiOperation(value = "Saves the given json object")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
-	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = {
-			MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.POST, consumes = {
+			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<D> save(@RequestBody D viewModel)
+	public ResponseEntity<D> save(@Valid @RequestBody D viewModel)
 	{
 		T created = this.service.save(mapper.toEntity(viewModel));
 		D dto = mapper.toDto(created);

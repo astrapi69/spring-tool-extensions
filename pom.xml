@@ -54,6 +54,7 @@
 		<swagger-annotations.version>1.5.20</swagger-annotations.version>
 		<!-- GENERIC-MAPPER version -->
 		<generic-mapper.version>2.2</generic-mapper.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
 	</properties>
 
 	<scm>
@@ -75,6 +76,12 @@
 	<dependencyManagement>
 
 		<dependencies>
+		
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>2.0.0.Final</version>
+			</dependency>
 			<!-- GENERIC-MAPPER DEPENDENCY -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
@@ -205,6 +212,10 @@
 	</dependencyManagement>
 
 	<dependencies>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+			</dependency>
 		<!-- GENERIC-MAPPER DEPENDENCY -->
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
