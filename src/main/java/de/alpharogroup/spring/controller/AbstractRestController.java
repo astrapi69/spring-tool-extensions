@@ -54,12 +54,12 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
+public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
 {
 
-	GenericMapper<T, D> mapper;
+	GenericMapper<ENTITY, DTO> mapper;
 
-	GenericService<T, ID, R> service;
+	GenericService<ENTITY, ID, REPOSITORY> service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Delete the entity from the given id")
@@ -67,11 +67,11 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 			@ApiImplicitParam(name = "id", value = "the id from the entity to delete", paramType = "query") })
 	public Map<String, Object> delete(@PathVariable ID id)
 	{
-		Optional<T> optionalEntity = this.service.findById(id);
+		Optional<ENTITY> optionalEntity = this.service.findById(id);
 		Map<String, Object> map = MapFactory.newHashMap();
 		if (optionalEntity.isPresent())
 		{
-			D dto = mapper.toDto(optionalEntity.get());
+			DTO dto = mapper.toDto(optionalEntity.get());
 			map.put("deleted-object", dto);
 			this.service.deleteById(id);
 		}
@@ -85,7 +85,7 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Find all entities")
-	public Iterable<T> findAll()
+	public Iterable<ENTITY> findAll()
 	{
 		return this.service.findAll();
 	}
@@ -94,7 +94,7 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<D> get(@PathVariable ID id)
+	public ResponseEntity<DTO> get(@PathVariable ID id)
 	{
 		return Optional.ofNullable(this.service.getOne(id))
 			.map(obj -> new ResponseEntity<>(mapper.toDto(obj), HttpStatus.OK))
@@ -107,10 +107,10 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 	@RequestMapping(method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<D> save(@Valid @RequestBody D viewModel)
+	public ResponseEntity<DTO> save(@Valid @RequestBody DTO viewModel)
 	{
-		T created = this.service.save(mapper.toEntity(viewModel));
-		D dto = mapper.toDto(created);
+		ENTITY created = this.service.save(mapper.toEntity(viewModel));
+		DTO dto = mapper.toDto(created);
 		return ResponseEntity.ok(dto);
 	}
 
@@ -120,10 +120,10 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 			@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<D> update(@PathVariable ID id, @Valid @RequestBody D json)
+	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json)
 	{
 		return Optional.ofNullable(this.service.getOne(id)).map(entity -> {
-			T toUpdate = mapper.toEntity(json);
+			ENTITY toUpdate = mapper.toEntity(json);
 			try
 			{
 				CopyObjectExtensions.copy(toUpdate, entity);
@@ -133,7 +133,7 @@ public class AbstractRestController<T, ID, R extends JpaRepository<T, ID>, D>
 				throw new RuntimeException(e);
 			}
 
-			T updatedEntity = this.service.save(entity);
+			ENTITY updatedEntity = this.service.save(entity);
 
 			return new ResponseEntity<>(mapper.toDto(updatedEntity), HttpStatus.OK);
 		}).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
