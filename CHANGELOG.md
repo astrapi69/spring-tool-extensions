@@ -4,6 +4,13 @@
 Version 1.6-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of spring dependency to version 5.2.3.RELEASE
+- update of spring-data-jpa dependency to version 2.2.4.RELEASE
+- update of javax.servlet-api dependency to version 4.0.1
+- update of jobj-core dependency to version 3.4
+
 
 
 Version 1.5
