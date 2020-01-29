@@ -11,8 +11,6 @@ CHANGED:
 - update of javax.servlet-api dependency to version 4.0.1
 - update of jobj-core dependency to version 3.4
 
-
-
 Version 1.5
 -------------
 
