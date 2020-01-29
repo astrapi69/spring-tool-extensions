@@ -112,17 +112,17 @@ public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENT
 
 	REPOSITORY getRepository();
 
-	default <S extends ENTITY> S save(@NonNull S entity)
+	default ENTITY save(@NonNull ENTITY entity)
 	{
 		return getRepository().save(entity);
 	}
 
-	default <S extends ENTITY> Iterable<S> saveAll(@NonNull Iterable<S> entities)
+	default Iterable<ENTITY> saveAll(@NonNull Iterable<ENTITY> entities)
 	{
 		return getRepository().saveAll(entities);
 	}
 
-	default <S extends ENTITY> S saveAndFlush(@NonNull S entity)
+	default ENTITY saveAndFlush(@NonNull ENTITY entity)
 	{
 		return getRepository().saveAndFlush(entity);
 	}

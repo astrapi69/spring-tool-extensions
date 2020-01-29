@@ -43,13 +43,15 @@
 		<!-- JOBJECT-COPY versions -->
 		<jobj-copy.version>3.2</jobj-copy.version>
 		<!-- SILLY-COLLECTIONS version -->
-		<silly-collections.version>5.6</silly-collections.version>
+		<silly-collections.version>5.8</silly-collections.version>
+		<!-- SILLY-BEANS version -->
+		<silly-beans.version>1</silly-beans.version>
 		<!-- THROW-ABLE version -->
-		<throw-able.version>1.1</throw-able.version>
+		<throw-able.version>1.2</throw-able.version>
 		<!-- HIBERNATE versions -->
 		<hibernate.version>5.3.11.Final</hibernate.version>
 		<!-- ENT-API version -->
-		<ent-api.version>1.5</ent-api.version>
+		<ent-api.version>1.6</ent-api.version>
 		<!-- SWAGGER-ANNOTATIONS version -->
 		<swagger-annotations.version>1.5.20</swagger-annotations.version>
 		<!-- GENERIC-MAPPER version -->
@@ -136,6 +138,12 @@
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>silly-collections</artifactId>
 				<version>${silly-collections.version}</version>
+			</dependency>
+			<!-- SILLY-BEANS DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>silly-beans</artifactId>
+				<version>${silly-beans.version}</version>
 			</dependency>
 			<!-- THROW-ABLE DEPENDENCY -->
 			<dependency>
@@ -261,6 +269,11 @@
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>silly-collections</artifactId>
 		</dependency>
+			<!-- SILLY-BEANS DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>silly-beans</artifactId>
+			</dependency>
 		<!-- COMMONS-LANG3 DEPENDENCY -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
