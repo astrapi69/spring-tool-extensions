@@ -33,14 +33,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import lombok.NonNull;
 
-public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
+public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>>
 {
 	default long count()
 	{
 		return getRepository().count();
 	}
 
-	default void delete(@NonNull T entity)
+	default void delete(@NonNull ENTITY entity)
 	{
 		getRepository().delete(entity);
 	}
@@ -50,7 +50,7 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		getRepository().deleteAll();
 	}
 
-	default void deleteAll(@NonNull Iterable<? extends T> entities)
+	default void deleteAll(@NonNull Iterable<? extends ENTITY> entities)
 	{
 		getRepository().deleteAll(entities);
 	}
@@ -65,7 +65,7 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		getRepository().deleteById(id);
 	}
 
-	default void deleteInBatch(@NonNull Iterable<T> entities)
+	default void deleteInBatch(@NonNull Iterable<ENTITY> entities)
 	{
 		getRepository().deleteInBatch(entities);
 	}
@@ -75,27 +75,27 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		return getRepository().existsById(id);
 	}
 
-	default Iterable<T> findAll()
+	default Iterable<ENTITY> findAll()
 	{
 		return getRepository().findAll();
 	}
 
-	default Page<T> findAll(@NonNull Pageable pageable)
+	default Page<ENTITY> findAll(@NonNull Pageable pageable)
 	{
 		return getRepository().findAll(pageable);
 	}
 
-	default Iterable<T> findAll(@NonNull Sort sort)
+	default Iterable<ENTITY> findAll(@NonNull Sort sort)
 	{
 		return getRepository().findAll(sort);
 	}
 
-	default Iterable<T> findAllById(@NonNull Iterable<ID> ids)
+	default Iterable<ENTITY> findAllById(@NonNull Iterable<ID> ids)
 	{
 		return getRepository().findAllById(ids);
 	}
 
-	default Optional<T> findById(@NonNull ID id)
+	default Optional<ENTITY> findById(@NonNull ID id)
 	{
 		return getRepository().findById(id);
 	}
@@ -105,24 +105,24 @@ public interface GenericService<T, ID, R extends JpaRepository<T, ID>>
 		getRepository().flush();
 	}
 
-	default T getOne(@NonNull ID id)
+	default ENTITY getOne(@NonNull ID id)
 	{
 		return getRepository().getOne(id);
 	}
 
-	R getRepository();
+	REPOSITORY getRepository();
 
-	default <S extends T> S save(@NonNull S entity)
+	default ENTITY save(@NonNull ENTITY entity)
 	{
 		return getRepository().save(entity);
 	}
 
-	default <S extends T> Iterable<S> saveAll(@NonNull Iterable<S> entities)
+	default Iterable<ENTITY> saveAll(@NonNull Iterable<ENTITY> entities)
 	{
 		return getRepository().saveAll(entities);
 	}
 
-	default <S extends T> S saveAndFlush(@NonNull S entity)
+	default ENTITY saveAndFlush(@NonNull ENTITY entity)
 	{
 		return getRepository().saveAndFlush(entity);
 	}

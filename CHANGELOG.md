@@ -1,6 +1,20 @@
 ## Change log
 ----------------------
 
+Version 1.6
+-------------
+
+ADDED:
+
+- gradle as new build system
+
+CHANGED:
+
+- update of spring dependency to version 5.2.6.RELEASE
+- update of spring-data-jpa dependency to version 2.3.0.RELEASE
+- update of javax.servlet-api dependency to version 4.0.1
+- update of jobj-core dependency to version 3.5
+
 Version 1.5
 -------------
 
