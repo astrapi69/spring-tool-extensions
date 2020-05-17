@@ -24,12 +24,12 @@
  */
 package de.alpharogroup.spring.service.api;
 
-import de.alpharogroup.collections.list.ListExtensions;
-import de.alpharogroup.db.entity.name.Nameable;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import de.alpharogroup.collections.list.ListExtensions;
+import de.alpharogroup.db.entity.name.Nameable;
 
 public interface NameEntityService<T extends Nameable>
 {
