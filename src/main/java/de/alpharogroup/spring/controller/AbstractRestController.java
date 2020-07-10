@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.alpharogroup.bean.mapper.GenericMapper;
+import de.alpharogroup.bean.mapper.GenericModelMapper;
 import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.copy.object.CopyObjectExtensions;
 import de.alpharogroup.spring.service.api.GenericService;
@@ -57,7 +57,7 @@ import lombok.experimental.FieldDefaults;
 public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
 {
 
-	GenericMapper<ENTITY, DTO> mapper;
+	GenericModelMapper<ENTITY, DTO> mapper;
 
 	GenericService<ENTITY, ID, REPOSITORY> service;
 
@@ -71,6 +71,7 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 		Map<String, Object> map = MapFactory.newHashMap();
 		if (optionalEntity.isPresent())
 		{
+//			DTO dto = mapper.toDto(optionalEntity.get());
 			DTO dto = mapper.toDto(optionalEntity.get());
 			map.put("deleted-object", dto);
 			this.service.deleteById(id);
