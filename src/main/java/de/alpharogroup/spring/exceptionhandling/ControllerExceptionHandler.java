@@ -42,12 +42,21 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.servlet.http.HttpServletRequest;
 import java.util.NoSuchElementException;
 
-@RequiredArgsConstructor @ControllerAdvice(annotations = RestController.class) @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) public class ControllerExceptionHandler
+/**
+ * The class {@link ControllerExceptionHandler} handles specified exceptions for rest controllers
+ */
+@RequiredArgsConstructor
+@ControllerAdvice(annotations = RestController.class)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class ControllerExceptionHandler
 	extends ResponseEntityExceptionHandler
 {
 
 	MessageSource messageSource;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override protected ResponseEntity<Object> handleBindException(BindException exception,
 		HttpHeaders headers, HttpStatus status, WebRequest request)
 	{
@@ -55,6 +64,13 @@ import java.util.NoSuchElementException;
 			.newResponseEntity(exception, headers, status, request, messageSource);
 	}
 
+	/**
+	 * Handle all general {@link Exception}s
+	 *
+	 * @param exception the exception
+	 * @param request the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
 	@ExceptionHandler({ Exception.class }) public ResponseEntity<Object> handleException(
 		Exception exception, HttpServletRequest request)
 	{
@@ -64,6 +80,13 @@ import java.util.NoSuchElementException;
 				exception.getLocalizedMessage()));
 	}
 
+	/**
+	 * Handle all {@link IllegalArgumentException}s
+	 *
+	 * @param exception the exception
+	 * @param request the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
 	@ExceptionHandler({
 		IllegalArgumentException.class }) public ResponseEntity<Object> handleIllegalArgumentException(
 		IllegalArgumentException exception, HttpServletRequest request)
@@ -74,6 +97,13 @@ import java.util.NoSuchElementException;
 				"No proper arguments for the request"));
 	}
 
+	/**
+	 * Handle all {@link NoSuchElementException}s
+	 *
+	 * @param exception the exception
+	 * @param request the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
 	@ExceptionHandler({
 		NoSuchElementException.class }) public ResponseEntity<Object> handleNoSuchElementException(
 		NoSuchElementException exception, HttpServletRequest request)
@@ -84,6 +114,13 @@ import java.util.NoSuchElementException;
 				"No such element found"));
 	}
 
+	/**
+	 * Handle all {@link UnsupportedOperationException}s
+	 *
+	 * @param exception the exception
+	 * @param request the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
 	@ExceptionHandler({
 		UnsupportedOperationException.class }) public ResponseEntity<Object> handleUnsupportedOperationException(
 		UnsupportedOperationException exception, HttpServletRequest request)
