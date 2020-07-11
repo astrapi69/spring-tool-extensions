@@ -1,7 +1,12 @@
 ## Change log
 ----------------------
 
-Version 1.7-SNAPSHOT
+Version 1.8-SNAPSHOT
+-------------
+
+
+
+Version 1.7
 -------------
 
 ADDED:
