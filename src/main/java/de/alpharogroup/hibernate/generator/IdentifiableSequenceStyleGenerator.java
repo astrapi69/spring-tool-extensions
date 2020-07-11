@@ -44,10 +44,6 @@ public class IdentifiableSequenceStyleGenerator extends SequenceStyleGenerator
 	 */
 	public static final String STRATEGY_CLASS_NAME = "de.alpharogroup.hibernate.generator.IdentifiableSequenceStyleGenerator";
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@SuppressWarnings("rawtypes")
 	public Serializable generate(SessionImplementor session, Object object)
 	{
 		if (object instanceof Identifiable)

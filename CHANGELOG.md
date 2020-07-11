@@ -1,6 +1,22 @@
 ## Change log
 ----------------------
 
+Version 1.7-SNAPSHOT
+-------------
+
+ADDED:
+
+- new test-dependency junit-jupiter (junit 5) in version 5.6.2
+- new class ControllerExceptionHandler
+
+CHANGED:
+
+- update gradle to new version 6.5.1
+- update of spring version to 5.2.7
+- update of spring-data version to 2.3.1
+- update of throw-able dependency to version 1.4
+- update of generic-mapper dependency to version 2.4
+
 Version 1.6
 -------------
 
