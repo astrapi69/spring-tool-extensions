@@ -56,7 +56,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
-		<spring-tool-extensions.version>1.7</spring-tool-extensions.version>
+		<spring-tool-extensions.version>1.7.1</spring-tool-extensions.version>
 			...
 	</properties>
 			...
@@ -79,7 +79,7 @@ Add the following gradle dependency to your project `build.gradle` in the depend
 ```
 ext {
 			...
-	springToolExtensionsVersion = "1.7"
+	springToolExtensionsVersion = "1.7.1"
 			...
 }
 dependencies {
