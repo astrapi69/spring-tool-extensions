@@ -1,7 +1,18 @@
 ## Change log
 ----------------------
 
-Version 1.7-SNAPSHOT
+Version 1.7.1
+-------------
+
+CHANGED:
+
+- update of dependency ent-api version to 1.8
+- adapted NameEntityService to the ent-api version
+- update of dependency commons-lang3 to version 3.11
+- update of test dependency mockito to version 3.4.3
+- update of gradle-plugin com.github.ben-manes.versions to version 0.29.0
+
+Version 1.7
 -------------
 
 ADDED:
