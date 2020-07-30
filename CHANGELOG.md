@@ -4,6 +4,10 @@
 Version 1.8-SNAPSHOT
 -------------
 
+ADDED:
+
+- new abstract class AbstractSwaggerConfiguration created
+
 CHANGED:
 
 - update of dependency ent-api version to 1.8
