@@ -26,10 +26,10 @@ package de.alpharogroup.hibernate.generator;
 
 import java.io.Serializable;
 
+import de.alpharogroup.db.entity.identifiable.Identifiable;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
-import de.alpharogroup.db.entity.Identifiable;
 
 /**
  * The class {@link IdentifiableSequenceStyleGenerator} is custom implementation of

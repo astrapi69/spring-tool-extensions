@@ -46,8 +46,23 @@ public class UrlExtensions
 		uriComponentsBuilder.scheme(scheme);
 		uriComponentsBuilder.host(host);
 		uriComponentsBuilder.port(serverPort);
-		uriComponentsBuilder.path(restVersion + restPath);
+		uriComponentsBuilder.path(restVersion+ "/" + restPath);
 		return uriComponentsBuilder.toUriString();
+	}
+
+	public static String newBaseUrl(String scheme, String domainName, int port, boolean withServerPort, boolean withSlashAtTheEnd) {
+		StringBuilder domainUrl = new StringBuilder();
+		domainUrl.append(scheme);
+		domainUrl.append("://");
+		domainUrl.append(domainName);
+		if (withServerPort) {
+			domainUrl.append(":");
+			domainUrl.append(port);
+		}
+		if (withSlashAtTheEnd) {
+			domainUrl.append("/");
+		}
+		return domainUrl.toString();
 	}
 
 	public static String generateUrl(@NonNull final String baseUrl, @NonNull final String methodUrl,
@@ -111,10 +126,12 @@ public class UrlExtensions
 		return sb.toString();
 	}
 
-	public String expand(String uriTemplate, Map<String, ?> uriVars)
+	public static String expand(String uriTemplate, Map<String, ?> uriVars)
 	{
-		UriComponents uriComponents = UriComponentsBuilder.fromUriString(uriTemplate)
-			.buildAndExpand(uriVars);
-		return uriComponents.toUriString();
+		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(uriTemplate);
+		for(Map.Entry<String, ?> entry : uriVars.entrySet()){
+			uriComponentsBuilder.queryParam(entry.getKey(), entry.getValue());
+		}
+		return uriComponentsBuilder.toUriString();
 	}
 }
