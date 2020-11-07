@@ -56,7 +56,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
-		<spring-tool-extensions.version>1.7.1</spring-tool-extensions.version>
+		<spring-tool-extensions.version>1.8</spring-tool-extensions.version>
 			...
 	</properties>
 			...
@@ -74,7 +74,15 @@ Than you can add the dependency to your dependencies:
 	
 ## gradle dependency
 
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of generic-mapper:
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of spring-tool-extensions:
+
+```
+define version in file gradle.properties
+
+springToolExtensionsVersion=1.8
+```
+
+or in build.gradle ext area
 
 ```
 ext {
@@ -82,9 +90,14 @@ ext {
 	springToolExtensionsVersion = "1.7.1"
 			...
 }
+```
+
+and than add the dependency to the dependencies area
+ 
+```
 dependencies {
 			...
-	compile("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
+	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
 			...
 }
 ```

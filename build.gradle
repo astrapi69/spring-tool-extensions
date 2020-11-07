@@ -33,40 +33,6 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    compileOnly("javax.persistence:javax.persistence-api:$javaxPersistenceApiVersion")
-    implementation("javax.validation:validation-api:$validationApiVersion")
-    implementation("de.alpharogroup:ent-api:$entApiVersion")
-    implementation("de.alpharogroup:bean-mapper-api:$beanMapperApiVersion")
-    implementation("de.alpharogroup:generic-mapper:$genericMapperVersion")
-    implementation("de.alpharogroup:jobj-copy:$jobjCopyVersion")
-    implementation("de.alpharogroup:throw-able:$throwAbleVersion")
-    implementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
-    implementation("de.alpharogroup:silly-beans:$sillyBeansVersion")
-    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
-    implementation("io.swagger:swagger-annotations:$swaggerAnnotationsVersion")
-    implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
-    implementation("org.hibernate:hibernate-core:$hibernateCoreVersion")
-    implementation("javax.servlet:javax.servlet-api:$javaxServletApiVersion")
-    implementation("org.apache.commons:commons-lang3:$commonsLang3Version")
-    implementation("org.springframework.batch:spring-batch-infrastructure:$springBatchInfrastructureVersion")
-    implementation("org.springframework:spring-context:$springVersion")
-    implementation("org.springframework:spring-context-support:$springVersion")
-    implementation("org.springframework:spring-jdbc:$springVersion")
-    implementation("org.springframework:spring-web:$springVersion")
-    implementation("org.springframework:spring-webmvc:$springVersion")
-    implementation("org.springframework:spring-orm:$springVersion")
-    implementation("org.springframework:spring-test:$springVersion")
-    implementation("org.springframework.data:spring-data-jpa:$springDataJpaVersion")
-    implementation("net.sf.ehcache:ehcache:$ehcacheVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
-    testImplementation("org.springframework:spring-test:$springVersion")
-    testImplementation("org.mockito:mockito-core:$mockitoCoreVersion")
-}
-
 tasks.withType(GenerateModuleMetadata) {
     enabled = false
 }
@@ -219,3 +185,37 @@ license {
 // workhack for license issue #76
 gradle.startParameter.excludedTaskNames += "licenseMain"
 gradle.startParameter.excludedTaskNames += "licenseTest"
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    compileOnly("javax.persistence:javax.persistence-api:$javaxPersistenceApiVersion")
+    implementation("javax.validation:validation-api:$validationApiVersion")
+    implementation("de.alpharogroup:ent-api:$entApiVersion")
+    implementation("de.alpharogroup:bean-mapper-api:$beanMapperApiVersion")
+    implementation("de.alpharogroup:generic-mapper:$genericMapperVersion")
+    implementation("de.alpharogroup:jobj-copy:$jobjCopyVersion")
+    implementation("de.alpharogroup:throw-able:$throwAbleVersion")
+    implementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    implementation("de.alpharogroup:silly-beans:$sillyBeansVersion")
+    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    implementation("io.swagger:swagger-annotations:$swaggerAnnotationsVersion")
+    implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
+    implementation("org.hibernate:hibernate-core:$hibernateCoreVersion")
+    implementation("javax.servlet:javax.servlet-api:$javaxServletApiVersion")
+    implementation("org.apache.commons:commons-lang3:$commonsLang3Version")
+    implementation("org.springframework.batch:spring-batch-infrastructure:$springBatchInfrastructureVersion")
+    implementation("org.springframework:spring-context:$springVersion")
+    implementation("org.springframework:spring-context-support:$springVersion")
+    implementation("org.springframework:spring-jdbc:$springVersion")
+    implementation("org.springframework:spring-web:$springVersion")
+    implementation("org.springframework:spring-webmvc:$springVersion")
+    implementation("org.springframework:spring-orm:$springVersion")
+    implementation("org.springframework:spring-test:$springVersion")
+    implementation("org.springframework.data:spring-data-jpa:$springDataJpaVersion")
+    implementation("net.sf.ehcache:ehcache:$ehcacheVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+    testImplementation("org.springframework:spring-test:$springVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoCoreVersion")
+}
