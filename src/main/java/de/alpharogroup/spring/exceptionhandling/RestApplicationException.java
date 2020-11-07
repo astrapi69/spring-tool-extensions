@@ -24,46 +24,26 @@
  */
 package de.alpharogroup.spring.exceptionhandling;
 
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import org.springframework.http.HttpStatus;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 /**
- * The class {@link ExceptionViewModel} holds data for exception representations
+ * The general class {@link RestApplicationException} for rest controller
+ * exceptions
  */
-@Data
-@RequiredArgsConstructor
+@Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder(toBuilder = true)
-public class ExceptionViewModel {
+public class RestApplicationException extends RuntimeException {
 
-	/** The map for additional informations */
-	@Builder.Default
-	final Map<String, String> additionalInfos = new LinkedHashMap<>();
+	private static final long serialVersionUID = 1L;
+	int code;
+	String errorMessage;
 
-	/** The developer message. */
-	String developerMessage;
-
-	/** The http status. */
-	HttpStatus httpStatus;
-
-	/** The time when the exception is occured. */
-	LocalDateTime occured;
-
-	/** The request url. */
-	String requestUrl;
-
-	/** The user message. */
-	String userMessage;
+	public RestApplicationException(int code) {
+		this.code = code;
+	}
 
 }

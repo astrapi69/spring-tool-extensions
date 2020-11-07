@@ -24,10 +24,10 @@
  */
 package de.alpharogroup.spring.exceptionhandling;
 
-import de.alpharogroup.throwable.ExceptionExtensions;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import java.util.NoSuchElementException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -39,59 +39,89 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.NoSuchElementException;
+import de.alpharogroup.throwable.ExceptionExtensions;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
-@RequiredArgsConstructor @ControllerAdvice(annotations = RestController.class) @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) public class ControllerExceptionHandler
-	extends ResponseEntityExceptionHandler
-{
+/**
+ * The class {@link ControllerExceptionHandler} handles specified exceptions for
+ * rest controllers
+ */
+@RequiredArgsConstructor
+@ControllerAdvice(annotations = RestController.class)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
 	MessageSource messageSource;
 
-	@Override protected ResponseEntity<Object> handleBindException(BindException exception,
-		HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
-		return ExceptionHandlerExtensions
-			.newResponseEntity(exception, headers, status, request, messageSource);
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ResponseEntity<Object> handleBindException(BindException exception, HttpHeaders headers,
+			HttpStatus status, WebRequest request) {
+		return ExceptionHandlerExtensions.newResponseEntity(exception, headers, status, request, messageSource);
 	}
 
-	@ExceptionHandler({ Exception.class }) public ResponseEntity<Object> handleException(
-		Exception exception, HttpServletRequest request)
-	{
-		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions
-			.newExceptionViewModel(request, HttpStatus.INTERNAL_SERVER_ERROR,
-				ExceptionExtensions.getStackTrace(exception, exception.getMessage()),
+	/**
+	 * Handle all general {@link Exception}s
+	 *
+	 * @param exception the exception
+	 * @param request   the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
+	@ExceptionHandler({ Exception.class })
+	public ResponseEntity<Object> handleException(Exception exception, HttpServletRequest request) {
+		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions.newExceptionViewModel(request,
+				HttpStatus.INTERNAL_SERVER_ERROR, ExceptionExtensions.getStackTrace(exception, exception.getMessage()),
 				exception.getLocalizedMessage()));
 	}
 
-	@ExceptionHandler({
-		IllegalArgumentException.class }) public ResponseEntity<Object> handleIllegalArgumentException(
-		IllegalArgumentException exception, HttpServletRequest request)
-	{
-		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions
-			.newExceptionViewModel(request, HttpStatus.BAD_REQUEST,
-				ExceptionExtensions.getStackTrace(exception, "Invalid request"),
+	/**
+	 * Handle all {@link IllegalArgumentException}s
+	 *
+	 * @param exception the exception
+	 * @param request   the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
+	@ExceptionHandler({ IllegalArgumentException.class })
+	public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException exception,
+			HttpServletRequest request) {
+		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions.newExceptionViewModel(request,
+				HttpStatus.BAD_REQUEST, ExceptionExtensions.getStackTrace(exception, "Invalid request"),
 				"No proper arguments for the request"));
 	}
 
-	@ExceptionHandler({
-		NoSuchElementException.class }) public ResponseEntity<Object> handleNoSuchElementException(
-		NoSuchElementException exception, HttpServletRequest request)
-	{
-		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions
-			.newExceptionViewModel(request, HttpStatus.NOT_FOUND,
-				ExceptionExtensions.getStackTrace(exception, "No such element found"),
+	/**
+	 * Handle all {@link NoSuchElementException}s
+	 *
+	 * @param exception the exception
+	 * @param request   the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
+	@ExceptionHandler({ NoSuchElementException.class })
+	public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException exception,
+			HttpServletRequest request) {
+		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions.newExceptionViewModel(request,
+				HttpStatus.NOT_FOUND, ExceptionExtensions.getStackTrace(exception, "No such element found"),
 				"No such element found"));
 	}
 
-	@ExceptionHandler({
-		UnsupportedOperationException.class }) public ResponseEntity<Object> handleUnsupportedOperationException(
-		UnsupportedOperationException exception, HttpServletRequest request)
-	{
-		return ExceptionHandlerExtensions.newResponseEntity(ExceptionHandlerExtensions
-			.newExceptionViewModel(request, HttpStatus.METHOD_NOT_ALLOWED,
-				ExceptionExtensions.getStackTrace(exception, "Operation not supported request"),
-				"Operation not supported"));
+	/**
+	 * Handle all {@link UnsupportedOperationException}s
+	 *
+	 * @param exception the exception
+	 * @param request   the current request
+	 * @return a {@code ResponseEntity} instance
+	 */
+	@ExceptionHandler({ UnsupportedOperationException.class })
+	public ResponseEntity<Object> handleUnsupportedOperationException(UnsupportedOperationException exception,
+			HttpServletRequest request) {
+		return ExceptionHandlerExtensions.newResponseEntity(
+				ExceptionHandlerExtensions.newExceptionViewModel(request, HttpStatus.METHOD_NOT_ALLOWED,
+						ExceptionExtensions.getStackTrace(exception, "Operation not supported request"),
+						"Operation not supported"));
 	}
 
 }

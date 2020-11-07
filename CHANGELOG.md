@@ -1,6 +1,27 @@
 ## Change log
 ----------------------
 
+Version 1.8
+-------------
+
+ADDED:
+
+- new abstract class AbstractSwaggerConfiguration created
+- new method newBaseUrl in class UrlExtensions created
+
+CHANGED:
+
+- update of ent-api dependency version to 2
+- update of spring dependency to version 5.3.0
+- update of hibernate dependency to version 5.4.22.Final
+- update of spring-data dependency to version 2.4.0
+- update of lombok dependency to version 1.18.16
+- adapted NameEntityService to the new ent-api version 2
+- update of dependency commons-lang3 to version 3.11
+- update of test dependency mockito to version 3.6.0
+- update of gradle-plugin com.github.ben-manes.versions to version 0.34.0
+- update of build.gradle file for be more generic
+
 Version 1.7.1
 -------------
 
