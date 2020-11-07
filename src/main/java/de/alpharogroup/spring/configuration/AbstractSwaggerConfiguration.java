@@ -11,31 +11,23 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 public abstract class AbstractSwaggerConfiguration {
-	public abstract String getBasePackage();
-
-	public abstract String getApiInfoTitle();
-
-	public abstract String getApiInfoDescription();
-
-	public abstract String getApiInfoVersion();
-
-	public abstract String getContactName();
-
-	public abstract String getContactUrl();
-
-	public abstract String getDocketPathsPathRegex();
-
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage(getBasePackage())).paths(regex(getDocketPathsPathRegex()))
 				.build().apiInfo(metaData());
 	}
 
-	protected ApiInfo metaData() {
-		return new ApiInfo(getApiInfoTitle(), getApiInfoDescription(), getApiInfoVersion(),
-				getApiInfoTermsOfServiceUrl(), new Contact(getContactName(), getContactUrl(), getContactEmail()),
-				getContactLicense(), getContactLicenseUrl(), Collections.emptyList());
+	public abstract String getApiInfoDescription();
+
+	protected String getApiInfoTermsOfServiceUrl() {
+		return "";
 	}
+
+	public abstract String getApiInfoTitle();
+
+	public abstract String getApiInfoVersion();
+
+	public abstract String getBasePackage();
 
 	public String getContactEmail() {
 		return "";
@@ -49,8 +41,16 @@ public abstract class AbstractSwaggerConfiguration {
 		return "";
 	}
 
-	protected String getApiInfoTermsOfServiceUrl() {
-		return "";
+	public abstract String getContactName();
+
+	public abstract String getContactUrl();
+
+	public abstract String getDocketPathsPathRegex();
+
+	protected ApiInfo metaData() {
+		return new ApiInfo(getApiInfoTitle(), getApiInfoDescription(), getApiInfoVersion(),
+				getApiInfoTermsOfServiceUrl(), new Contact(getContactName(), getContactUrl(), getContactEmail()),
+				getContactLicense(), getContactLicenseUrl(), Collections.emptyList());
 	}
 
 }

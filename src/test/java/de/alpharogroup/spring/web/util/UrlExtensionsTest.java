@@ -12,16 +12,6 @@ import de.alpharogroup.collections.map.MapFactory;
 class UrlExtensionsTest {
 
 	@Test
-	void getBaseUrl() {
-		String actual;
-		String expected;
-		//
-		actual = UrlExtensions.getBaseUrl("http", "localhost", 8080, "v1", "resource");
-		expected = "http://localhost:8080/v1/resource";
-		assertEquals(expected, actual);
-	}
-
-	@Test
 	void expand() {
 
 		String actual;
@@ -57,6 +47,16 @@ class UrlExtensionsTest {
 
 		actual = UrlExtensions.generateUrl(baseUrl, methodUrl, requestParams, arrayParamsName, arrayParams);
 		expected = "http://localhost:8080/GET?username={username}&arrayparamname=foo";
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	void getBaseUrl() {
+		String actual;
+		String expected;
+		//
+		actual = UrlExtensions.getBaseUrl("http", "localhost", 8080, "v1", "resource");
+		expected = "http://localhost:8080/v1/resource";
 		assertEquals(expected, actual);
 	}
 

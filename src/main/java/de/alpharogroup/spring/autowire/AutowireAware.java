@@ -12,9 +12,6 @@ public final class AutowireAware implements ApplicationContextAware {
 
 	private static ApplicationContext applicationContext;
 
-	private AutowireAware() {
-	}
-
 	/**
 	 * Try to autowire the given object that contains the bean instances which need
 	 * to be autowired
@@ -30,6 +27,9 @@ public final class AutowireAware implements ApplicationContextAware {
 				applicationContext.getAutowireCapableBeanFactory().autowireBean(classHolderToAutowire);
 			}
 		}
+	}
+
+	private AutowireAware() {
 	}
 
 	@Override
