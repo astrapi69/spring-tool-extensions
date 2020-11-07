@@ -1,17 +1,16 @@
 package de.alpharogroup.spring.configuration;
 
+import static springfox.documentation.builders.PathSelectors.regex;
+
+import java.util.Collections;
+
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-import java.util.Collections;
-
-import static springfox.documentation.builders.PathSelectors.regex;
-
-public abstract class AbstractSwaggerConfiguration
-{
+public abstract class AbstractSwaggerConfiguration {
 	public abstract String getBasePackage();
 
 	public abstract String getApiInfoTitle();
@@ -26,38 +25,31 @@ public abstract class AbstractSwaggerConfiguration
 
 	public abstract String getDocketPathsPathRegex();
 
-	public Docket api()
-	{
+	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-			.apis(RequestHandlerSelectors.basePackage(getBasePackage()))
-			.paths(regex(getDocketPathsPathRegex())).build().apiInfo(metaData());
+				.apis(RequestHandlerSelectors.basePackage(getBasePackage())).paths(regex(getDocketPathsPathRegex()))
+				.build().apiInfo(metaData());
 	}
 
-	protected ApiInfo metaData()
-	{
+	protected ApiInfo metaData() {
 		return new ApiInfo(getApiInfoTitle(), getApiInfoDescription(), getApiInfoVersion(),
-			getApiInfoTermsOfServiceUrl(),
-			new Contact(getContactName(), getContactUrl(), getContactEmail()), getContactLicense(),
-			getContactLicenseUrl(), Collections.emptyList());
+				getApiInfoTermsOfServiceUrl(), new Contact(getContactName(), getContactUrl(), getContactEmail()),
+				getContactLicense(), getContactLicenseUrl(), Collections.emptyList());
 	}
 
-	public String getContactEmail()
-	{
+	public String getContactEmail() {
 		return "";
 	}
 
-	public String getContactLicense()
-	{
+	public String getContactLicense() {
 		return "";
 	}
 
-	public String getContactLicenseUrl()
-	{
+	public String getContactLicenseUrl() {
 		return "";
 	}
 
-	protected String getApiInfoTermsOfServiceUrl()
-	{
+	protected String getApiInfoTermsOfServiceUrl() {
 		return "";
 	}
 

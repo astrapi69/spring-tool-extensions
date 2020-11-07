@@ -19,7 +19,7 @@ CHANGED:
 - adapted NameEntityService to the ent-api version
 - update of dependency commons-lang3 to version 3.11
 - update of test dependency mockito to version 3.6.0
-- update of gradle-plugin com.github.ben-manes.versions to version 0.33.0
+- update of gradle-plugin com.github.ben-manes.versions to version 0.34.0
 - update of build.gradle file for be more generic
 
 Version 1.7

@@ -6,17 +6,19 @@ import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 /**
- * The general class {@link RestApplicationException} for rest controller exceptions
+ * The general class {@link RestApplicationException} for rest controller
+ * exceptions
  */
-@Getter @AllArgsConstructor @FieldDefaults(level = AccessLevel.PRIVATE) public class RestApplicationException
-	extends RuntimeException
-{
+@Getter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class RestApplicationException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
 	int code;
 	String errorMessage;
 
-	public RestApplicationException(int code)
-	{
+	public RestApplicationException(int code) {
 		this.code = code;
 	}
 

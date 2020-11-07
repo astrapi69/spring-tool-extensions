@@ -33,97 +33,78 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import lombok.NonNull;
 
-public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>>
-{
-	default long count()
-	{
+public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>> {
+	default long count() {
 		return getRepository().count();
 	}
 
-	default void delete(@NonNull ENTITY entity)
-	{
+	default void delete(@NonNull ENTITY entity) {
 		getRepository().delete(entity);
 	}
 
-	default void deleteAll()
-	{
+	default void deleteAll() {
 		getRepository().deleteAll();
 	}
 
-	default void deleteAll(@NonNull Iterable<? extends ENTITY> entities)
-	{
+	default void deleteAll(@NonNull Iterable<? extends ENTITY> entities) {
 		getRepository().deleteAll(entities);
 	}
 
-	default void deleteAllInBatch()
-	{
+	default void deleteAllInBatch() {
 		getRepository().deleteAllInBatch();
 	}
 
-	default void deleteById(@NonNull ID id)
-	{
+	default void deleteById(@NonNull ID id) {
 		getRepository().deleteById(id);
 	}
 
-	default void deleteInBatch(@NonNull Iterable<ENTITY> entities)
-	{
+	default void deleteInBatch(@NonNull Iterable<ENTITY> entities) {
 		getRepository().deleteInBatch(entities);
 	}
 
-	default boolean existsById(@NonNull ID id)
-	{
+	default boolean existsById(@NonNull ID id) {
 		return getRepository().existsById(id);
 	}
 
-	default Iterable<ENTITY> findAll()
-	{
+	default Iterable<ENTITY> findAll() {
 		return getRepository().findAll();
 	}
 
-	default Page<ENTITY> findAll(@NonNull Pageable pageable)
-	{
+	default Page<ENTITY> findAll(@NonNull Pageable pageable) {
 		return getRepository().findAll(pageable);
 	}
 
-	default Iterable<ENTITY> findAll(@NonNull Sort sort)
-	{
+	default Iterable<ENTITY> findAll(@NonNull Sort sort) {
 		return getRepository().findAll(sort);
 	}
 
-	default Iterable<ENTITY> findAllById(@NonNull Iterable<ID> ids)
-	{
+	default Iterable<ENTITY> findAllById(@NonNull Iterable<ID> ids) {
 		return getRepository().findAllById(ids);
 	}
 
-	default Optional<ENTITY> findById(@NonNull ID id)
-	{
+	default Optional<ENTITY> findById(@NonNull ID id) {
 		return getRepository().findById(id);
 	}
 
-	default void flush()
-	{
+	default void flush() {
 		getRepository().flush();
 	}
 
-	default ENTITY getOne(@NonNull ID id)
-	{
+	default ENTITY getOne(@NonNull ID id) {
 		return getRepository().getOne(id);
 	}
 
 	REPOSITORY getRepository();
 
-	default ENTITY save(@NonNull ENTITY entity)
-	{
+	default ENTITY save(@NonNull ENTITY entity) {
 		return getRepository().save(entity);
 	}
 
-	default Iterable<ENTITY> saveAll(@NonNull Iterable<ENTITY> entities)
-	{
+	default Iterable<ENTITY> saveAll(@NonNull Iterable<ENTITY> entities) {
 		return getRepository().saveAll(entities);
 	}
 
-	default ENTITY saveAndFlush(@NonNull ENTITY entity)
-	{
+	default ENTITY saveAndFlush(@NonNull ENTITY entity) {
 		return getRepository().saveAndFlush(entity);
 	}
 

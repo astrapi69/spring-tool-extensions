@@ -27,7 +27,6 @@ package de.alpharogroup.spring.web.util;
 import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import de.alpharogroup.collections.array.ArrayFactory;
@@ -35,22 +34,20 @@ import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class UrlExtensions
-{
+public class UrlExtensions {
 
-
-	public static String getBaseUrl(@NonNull final String scheme, @NonNull final String host,
-		int serverPort, @NonNull final String restVersion, @NonNull final String restPath)
-	{
+	public static String getBaseUrl(@NonNull final String scheme, @NonNull final String host, int serverPort,
+			@NonNull final String restVersion, @NonNull final String restPath) {
 		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
 		uriComponentsBuilder.scheme(scheme);
 		uriComponentsBuilder.host(host);
 		uriComponentsBuilder.port(serverPort);
-		uriComponentsBuilder.path(restVersion+ "/" + restPath);
+		uriComponentsBuilder.path(restVersion + "/" + restPath);
 		return uriComponentsBuilder.toUriString();
 	}
 
-	public static String newBaseUrl(String scheme, String domainName, int port, boolean withServerPort, boolean withSlashAtTheEnd) {
+	public static String newBaseUrl(String scheme, String domainName, int port, boolean withServerPort,
+			boolean withSlashAtTheEnd) {
 		StringBuilder domainUrl = new StringBuilder();
 		domainUrl.append(scheme);
 		domainUrl.append("://");
@@ -66,70 +63,55 @@ public class UrlExtensions
 	}
 
 	public static String generateUrl(@NonNull final String baseUrl, @NonNull final String methodUrl,
-		final String[] requestParams)
-	{
+			final String[] requestParams) {
 		return generateUrl(baseUrl, methodUrl, requestParams, "", ArrayFactory.newArray());
 	}
 
-	public static String generateUrl(@NonNull final String baseUrl, @NonNull final String methodUrl)
-	{
+	public static String generateUrl(@NonNull final String baseUrl, @NonNull final String methodUrl) {
 		return generateUrl(baseUrl, methodUrl, ArrayFactory.newArray());
 	}
 
 	public static String generateUrl(@NonNull final String baseUrl, @NonNull final String methodUrl,
-		final String[] requestParams, @NonNull final String arrayParamsName,
-		final String[] arrayParams)
-	{
+			final String[] requestParams, @NonNull final String arrayParamsName, final String[] arrayParams) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(baseUrl).append(methodUrl);
-		if (ArrayUtils.isNotEmpty(requestParams))
-		{
+		if (ArrayUtils.isNotEmpty(requestParams)) {
 			sb.append("?");
-		}
-		else
-		{
+		} else {
 			return sb.toString();
 		}
 		int count = 0;
-		for (String requestParam : requestParams)
-		{
+		for (String requestParam : requestParams) {
 			sb.append(requestParam);
 			sb.append("={");
 			sb.append(requestParam);
 			sb.append("}");
 			count++;
-			if (count < requestParams.length)
-			{
+			if (count < requestParams.length) {
 				sb.append("&");
 			}
 		}
-		if (ArrayUtils.isNotEmpty(arrayParams))
-		{
+		if (ArrayUtils.isNotEmpty(arrayParams)) {
 			sb.append("&");
-		}
-		else
-		{
+		} else {
 			return sb.toString();
 		}
 		count = 0;
-		for (String arrayParam : arrayParams)
-		{
+		for (String arrayParam : arrayParams) {
 			sb.append(arrayParamsName);
 			sb.append("=");
 			sb.append(arrayParam);
 			count++;
-			if (count < arrayParams.length)
-			{
+			if (count < arrayParams.length) {
 				sb.append("&");
 			}
 		}
 		return sb.toString();
 	}
 
-	public static String expand(String uriTemplate, Map<String, ?> uriVars)
-	{
+	public static String expand(String uriTemplate, Map<String, ?> uriVars) {
 		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(uriTemplate);
-		for(Map.Entry<String, ?> entry : uriVars.entrySet()){
+		for (Map.Entry<String, ?> entry : uriVars.entrySet()) {
 			uriComponentsBuilder.queryParam(entry.getKey(), entry.getValue());
 		}
 		return uriComponentsBuilder.toUriString();

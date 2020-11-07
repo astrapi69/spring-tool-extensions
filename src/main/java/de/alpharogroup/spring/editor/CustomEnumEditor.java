@@ -34,33 +34,26 @@ import lombok.experimental.FieldDefaults;
 
 @SuppressWarnings("rawtypes")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class CustomEnumEditor<T extends Enum> extends PropertyEditorSupport
-{
+public class CustomEnumEditor<T extends Enum> extends PropertyEditorSupport {
 	@NonNull
 	Class<T> enumClass;
 
-	public CustomEnumEditor(@NonNull Class<T> enumClass)
-	{
+	public CustomEnumEditor(@NonNull Class<T> enumClass) {
 		this.enumClass = enumClass;
 	}
 
 	@Override
-	public String getAsText()
-	{
-		return (getValue() == null ? null : ((Enum)getValue()).name());
+	public String getAsText() {
+		return (getValue() == null ? null : ((Enum) getValue()).name());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void setAsText(String text) throws IllegalArgumentException
-	{
-		if (StringUtils.isBlank(text) || StringUtils.equalsIgnoreCase(text, "-1"))
-		{
+	public void setAsText(String text) throws IllegalArgumentException {
+		if (StringUtils.isBlank(text) || StringUtils.equalsIgnoreCase(text, "-1")) {
 			setValue(null);
-		}
-		else
-		{
-			setValue(Enum.<T> valueOf(this.enumClass, text));
+		} else {
+			setValue(Enum.<T>valueOf(this.enumClass, text));
 		}
 	}
 }

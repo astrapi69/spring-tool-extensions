@@ -45,8 +45,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder(toBuilder = true)
-public class ExceptionViewModel
-{
+public class ExceptionViewModel {
 
 	/** The map for additional informations */
 	@Builder.Default

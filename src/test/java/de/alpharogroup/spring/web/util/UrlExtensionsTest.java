@@ -1,19 +1,18 @@
 package de.alpharogroup.spring.web.util;
 
-import de.alpharogroup.collections.array.ArrayFactory;
-import de.alpharogroup.collections.map.MapFactory;
-import lombok.NonNull;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class UrlExtensionsTest
-{
+import de.alpharogroup.collections.array.ArrayFactory;
+import de.alpharogroup.collections.map.MapFactory;
 
-	@Test void getBaseUrl()
-	{
+class UrlExtensionsTest {
+
+	@Test
+	void getBaseUrl() {
 		String actual;
 		String expected;
 		//
@@ -22,7 +21,8 @@ class UrlExtensionsTest
 		assertEquals(expected, actual);
 	}
 
-	@Test void expand() {
+	@Test
+	void expand() {
 
 		String actual;
 		String expected;
@@ -38,15 +38,16 @@ class UrlExtensionsTest
 		assertEquals(expected, actual);
 	}
 
-	@Test void generateUrl() {
+	@Test
+	void generateUrl() {
 
 		String actual;
 		String expected;
 		String baseUrl;
 		String methodUrl;
-		 String[] requestParams;
+		String[] requestParams;
 		String arrayParamsName;
-		 String[] arrayParams;
+		String[] arrayParams;
 		//
 		baseUrl = "http://localhost:8080/";
 		methodUrl = "GET";
@@ -59,8 +60,8 @@ class UrlExtensionsTest
 		assertEquals(expected, actual);
 	}
 
-	@Test void newBaseUrl()
-	{
+	@Test
+	void newBaseUrl() {
 		String actual;
 		String expected;
 		//
