@@ -4,6 +4,17 @@
 Version 1.9-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of spring dependency to version 5.3.4
+- update of spring-batch dependency to version 4.3.1
+- update of hibernate dependency to version 5.4.28.Final
+- update of lombok dependency to version 1.18.18
+- update of spring-data dependency to version 2.4.5
+- update of test dependency mockito to version 3.8.0
+- update of test dependency junit-jupiter-api to version 5.7.1
+- update of gradle-plugin com.github.ben-manes.versions to version 0.36.0
+
 Version 1.8
 -------------
 

@@ -210,7 +210,6 @@ dependencies {
     implementation("org.springframework:spring-web:$springVersion")
     implementation("org.springframework:spring-webmvc:$springVersion")
     implementation("org.springframework:spring-orm:$springVersion")
-    implementation("org.springframework:spring-test:$springVersion")
     implementation("org.springframework.data:spring-data-jpa:$springDataJpaVersion")
     implementation("net.sf.ehcache:ehcache:$ehcacheVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
