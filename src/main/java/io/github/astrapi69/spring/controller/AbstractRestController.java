@@ -29,6 +29,11 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -46,15 +51,12 @@ import io.github.astrapi69.spring.service.api.GenericService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
 
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO> {
+public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
+{
 
 	GenericModelMapper<ENTITY, DTO> mapper;
 
@@ -64,14 +66,18 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 	@ApiOperation(value = "Delete the entity from the given id")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "the id from the entity to delete", paramType = "query") })
-	public Map<String, Object> delete(@PathVariable ID id) {
+	public Map<String, Object> delete(@PathVariable ID id)
+	{
 		Optional<ENTITY> optionalEntity = this.service.findById(id);
 		Map<String, Object> map = MapFactory.newHashMap();
-		if (optionalEntity.isPresent()) {
+		if (optionalEntity.isPresent())
+		{
 			DTO dto = mapper.toDto(optionalEntity.get());
 			map.put("deleted-object", dto);
 			this.service.deleteById(id);
-		} else {
+		}
+		else
+		{
 			map.put("deleted-object", "not exists");
 		}
 		map.put("success", true);
@@ -80,41 +86,51 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Find all entities")
-	public Iterable<ENTITY> findAll() {
+	public Iterable<ENTITY> findAll()
+	{
 		return this.service.findAll();
 	}
 
 	@ApiOperation(value = "Get the entity from the given id")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<DTO> get(@PathVariable ID id) {
+	public ResponseEntity<DTO> get(@PathVariable ID id)
+	{
 		return Optional.ofNullable(this.service.getOne(id))
-				.map(obj -> new ResponseEntity<>(mapper.toDto(obj), HttpStatus.OK))
-				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+			.map(obj -> new ResponseEntity<>(mapper.toDto(obj), HttpStatus.OK))
+			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@ApiOperation(value = "Saves the given json object")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
 	@RequestMapping(method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<DTO> save(@Valid @RequestBody DTO viewModel) {
+	public ResponseEntity<DTO> save(@Valid @RequestBody DTO viewModel)
+	{
 		ENTITY created = this.service.save(mapper.toEntity(viewModel));
 		DTO dto = mapper.toDto(created);
 		return ResponseEntity.ok(dto);
 	}
 
 	@ApiOperation(value = "Update the entity from the given id with the given new json object")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query"),
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query"),
 			@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json) {
+	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json)
+	{
 		return Optional.ofNullable(this.service.getOne(id)).map(entity -> {
 			ENTITY toUpdate = mapper.toEntity(json);
-			try {
+			try
+			{
 				CopyObjectExtensions.copy(toUpdate, entity);
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				throw new RuntimeException(e);
 			}
 

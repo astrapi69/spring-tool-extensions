@@ -29,7 +29,9 @@ import java.time.format.DateTimeFormatter;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import io.github.astrapi69.spring.batch.mapper.CustomBeanWrapperFieldSetMapper;
+import lombok.NonNull;
+import lombok.experimental.UtilityClass;
+
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JpaItemWriter;
@@ -42,56 +44,63 @@ import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.core.io.Resource;
 
 import io.github.astrapi69.reflection.ReflectionExtensions;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+import io.github.astrapi69.spring.batch.mapper.CustomBeanWrapperFieldSetMapper;
 
 @UtilityClass
-public class SpringBatchObjectFactory {
+public class SpringBatchObjectFactory
+{
 
 	public static final String READER_SUFFIX = "Reader";
 	public static final String WRITER_SUFFIX = "Writer";
 
-	public static <T> JdbcBatchItemWriter<T> newJdbcBatchItemWriter(final @NonNull DataSource dataSource,
-			final @NonNull String sql) {
+	public static <T> JdbcBatchItemWriter<T> newJdbcBatchItemWriter(
+		final @NonNull DataSource dataSource, final @NonNull String sql)
+	{
 		return new JdbcBatchItemWriterBuilder<T>()
-				.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>()).sql(sql)
-				.dataSource(dataSource).build();
+			.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+			.sql(sql).dataSource(dataSource).build();
 	}
 
 	public static <T> FlatFileItemReader<T> newCsvFileItemReader(final @NonNull Resource resource,
-			final @NonNull Class<T> typeClass, final @NonNull String delimiter, final int linesToSkip) {
-		return newCsvFileItemReader(resource, typeClass, DateTimeFormatter.ofPattern("dd-MM-yyyy"), delimiter,
-				linesToSkip);
+		final @NonNull Class<T> typeClass, final @NonNull String delimiter, final int linesToSkip)
+	{
+		return newCsvFileItemReader(resource, typeClass, DateTimeFormatter.ofPattern("dd-MM-yyyy"),
+			delimiter, linesToSkip);
 	}
 
 	public static <T> FlatFileItemReader<T> newCsvFileItemReader(final @NonNull Resource resource,
-			final @NonNull Class<T> typeClass, final @NonNull DateTimeFormatter formatter,
-			final @NonNull String delimiter, final int linesToSkip) {
-		return newCsvFileItemReader(resource, typeClass, new CustomBeanWrapperFieldSetMapper<>(typeClass, formatter),
-				delimiter, linesToSkip);
+		final @NonNull Class<T> typeClass, final @NonNull DateTimeFormatter formatter,
+		final @NonNull String delimiter, final int linesToSkip)
+	{
+		return newCsvFileItemReader(resource, typeClass,
+			new CustomBeanWrapperFieldSetMapper<>(typeClass, formatter), delimiter, linesToSkip);
 	}
 
 	public static <T> FlatFileItemReader<T> newCsvFileItemReader(final @NonNull Resource resource,
-			final @NonNull Class<T> typeClass, final @NonNull FieldSetMapper<T> fieldSetMapper,
-			final @NonNull String delimiter, final int linesToSkip) {
+		final @NonNull Class<T> typeClass, final @NonNull FieldSetMapper<T> fieldSetMapper,
+		final @NonNull String delimiter, final int linesToSkip)
+	{
 		DefaultLineMapper<T> lineMapper = new DefaultLineMapper<>();
 		String[] fieldNames = ReflectionExtensions.getDeclaredFieldNames(typeClass);
 		DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer(delimiter);
 		delimitedLineTokenizer.setNames(fieldNames);
 		lineMapper.setFieldSetMapper(fieldSetMapper);
 		lineMapper.setLineTokenizer(delimitedLineTokenizer);
-		return new FlatFileItemReaderBuilder<T>().name(typeClass.getSimpleName() + READER_SUFFIX).resource(resource)
-				.lineMapper(lineMapper).linesToSkip(linesToSkip).build();
+		return new FlatFileItemReaderBuilder<T>().name(typeClass.getSimpleName() + READER_SUFFIX)
+			.resource(resource).lineMapper(lineMapper).linesToSkip(linesToSkip).build();
 	}
 
-	public static <T> JpaItemWriter<T> newJpaItemWriter(final @NonNull EntityManagerFactory entityManagerFactory) {
+	public static <T> JpaItemWriter<T> newJpaItemWriter(
+		final @NonNull EntityManagerFactory entityManagerFactory)
+	{
 		JpaItemWriter<T> writer = new JpaItemWriter<>();
 		writer.setEntityManagerFactory(entityManagerFactory);
 		return writer;
 	}
 
 	public static <T> CustomBeanWrapperFieldSetMapper<T> newCustomBeanWrapperFieldSetMapper(
-			final @NonNull Class<? extends T> typeClass, final @NonNull DateTimeFormatter formatter) {
+		final @NonNull Class<? extends T> typeClass, final @NonNull DateTimeFormatter formatter)
+	{
 		return new CustomBeanWrapperFieldSetMapper<>(typeClass, formatter);
 	}
 

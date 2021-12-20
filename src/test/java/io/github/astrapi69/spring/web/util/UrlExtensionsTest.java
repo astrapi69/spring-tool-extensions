@@ -28,16 +28,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 
-import io.github.astrapi69.spring.web.util.UrlExtensions;
 import org.junit.jupiter.api.Test;
 
 import io.github.astrapi69.collections.array.ArrayFactory;
 import io.github.astrapi69.collections.map.MapFactory;
 
-class UrlExtensionsTest {
+class UrlExtensionsTest
+{
 
 	@Test
-	void expand() {
+	void expand()
+	{
 
 		String actual;
 		String expected;
@@ -54,7 +55,8 @@ class UrlExtensionsTest {
 	}
 
 	@Test
-	void generateUrl() {
+	void generateUrl()
+	{
 
 		String actual;
 		String expected;
@@ -70,13 +72,15 @@ class UrlExtensionsTest {
 		arrayParamsName = "arrayparamname";
 		arrayParams = ArrayFactory.newArray("foo");
 
-		actual = UrlExtensions.generateUrl(baseUrl, methodUrl, requestParams, arrayParamsName, arrayParams);
+		actual = UrlExtensions.generateUrl(baseUrl, methodUrl, requestParams, arrayParamsName,
+			arrayParams);
 		expected = "http://localhost:8080/GET?username={username}&arrayparamname=foo";
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	void getBaseUrl() {
+	void getBaseUrl()
+	{
 		String actual;
 		String expected;
 		//
@@ -86,7 +90,8 @@ class UrlExtensionsTest {
 	}
 
 	@Test
-	void newBaseUrl() {
+	void newBaseUrl()
+	{
 		String actual;
 		String expected;
 		//

@@ -32,23 +32,27 @@ import org.hibernate.id.enhanced.SequenceStyleGenerator;
 import io.github.astrapi69.entity.identifiable.Identifiable;
 
 /**
- * The class {@link IdentifiableSequenceStyleGenerator} is custom implementation
- * of {@link SequenceStyleGenerator} that can be used in the GenericGenerator
+ * The class {@link IdentifiableSequenceStyleGenerator} is custom implementation of
+ * {@link SequenceStyleGenerator} that can be used in the GenericGenerator
  */
-public class IdentifiableSequenceStyleGenerator extends SequenceStyleGenerator {
+public class IdentifiableSequenceStyleGenerator extends SequenceStyleGenerator
+{
 
 	/**
-	 * The Constant for the fully qualified class name that can be used in the
-	 * GenericGenerator for the strategy attribute
+	 * The Constant for the fully qualified class name that can be used in the GenericGenerator for
+	 * the strategy attribute
 	 */
 	public static final String STRATEGY_CLASS_NAME = "io.github.astrapi69.hibernate.generator.IdentifiableSequenceStyleGenerator";
 
 	@SuppressWarnings("rawtypes")
-	public Serializable generate(SessionImplementor session, Object object) {
-		if (object instanceof Identifiable) {
-			Identifiable identifiable = (Identifiable) object;
+	public Serializable generate(SessionImplementor session, Object object)
+	{
+		if (object instanceof Identifiable)
+		{
+			Identifiable identifiable = (Identifiable)object;
 			Serializable id = identifiable.getId();
-			if (id != null) {
+			if (id != null)
+			{
 				return id;
 			}
 		}

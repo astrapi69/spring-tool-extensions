@@ -34,8 +34,9 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import io.github.astrapi69.spring.exceptionhandling.ControllerExceptionHandler;
-import io.github.astrapi69.spring.exceptionhandling.ExceptionViewModel;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,13 +51,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
-
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ControllerExceptionHandler.class })
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ControllerExceptionHandlerTest {
+public class ControllerExceptionHandlerTest
+{
 
 	@SuppressWarnings("unused")
 	BindException bindException;
@@ -82,7 +81,8 @@ public class ControllerExceptionHandlerTest {
 	UnsupportedOperationException unsupportedOperationException;
 
 	@BeforeEach
-	public void prepare() {
+	public void prepare()
+	{
 		fieldError = mock(FieldError.class);
 		bindingResult = mock(BindingResult.class);
 		bindException = new BindException(bindingResult);
@@ -98,68 +98,72 @@ public class ControllerExceptionHandlerTest {
 	}
 
 	@Test
-	public void testHandleException() {
+	public void testHandleException()
+	{
 		String actual;
 		String expected;
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
-		ResponseEntity<Object> responseEntity = controllerExceptionHandler.handleException(exception,
-				httpServletRequest);
+		ResponseEntity<Object> responseEntity = controllerExceptionHandler
+			.handleException(exception, httpServletRequest);
 		HttpStatus statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
-		ExceptionViewModel exceptionViewModel = (ExceptionViewModel) body;
+		ExceptionViewModel exceptionViewModel = (ExceptionViewModel)body;
 		actual = exceptionViewModel.getDeveloperMessage();
 		expected = "General application error java.lang.Exception: General application error\n";
 		assertTrue(actual.startsWith(expected));
 	}
 
 	@Test
-	public void testHandleIllegalArgumentException() {
+	public void testHandleIllegalArgumentException()
+	{
 		String actual;
 		String expected;
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
-				.handleIllegalArgumentException(illegalArgumentException, httpServletRequest);
+			.handleIllegalArgumentException(illegalArgumentException, httpServletRequest);
 		HttpStatus statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.BAD_REQUEST, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
-		ExceptionViewModel exceptionViewModel = (ExceptionViewModel) body;
+		ExceptionViewModel exceptionViewModel = (ExceptionViewModel)body;
 		actual = exceptionViewModel.getDeveloperMessage();
 		expected = "Invalid request java.lang.IllegalArgumentException: Illegal argument\n";
 		assertTrue(actual.startsWith(expected));
 	}
 
 	@Test
-	public void testHandleNoSuchElementException() {
+	public void testHandleNoSuchElementException()
+	{
 		String actual;
 		String expected;
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
-				.handleNoSuchElementException(noSuchElementException, httpServletRequest);
+			.handleNoSuchElementException(noSuchElementException, httpServletRequest);
 		HttpStatus statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.NOT_FOUND, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
-		ExceptionViewModel exceptionViewModel = (ExceptionViewModel) body;
+		ExceptionViewModel exceptionViewModel = (ExceptionViewModel)body;
 		actual = exceptionViewModel.getDeveloperMessage();
 		expected = "No such element found java.util.NoSuchElementException: Not found\n";
 		assertTrue(actual.startsWith(expected));
 	}
 
 	@Test
-	public void testHandleUnsupportedOperationException() {
+	public void testHandleUnsupportedOperationException()
+	{
 		String actual;
 		String expected;
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
-				.handleUnsupportedOperationException(unsupportedOperationException, httpServletRequest);
+			.handleUnsupportedOperationException(unsupportedOperationException, httpServletRequest);
 		HttpStatus statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.METHOD_NOT_ALLOWED, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
-		ExceptionViewModel exceptionViewModel = (ExceptionViewModel) body;
+		ExceptionViewModel exceptionViewModel = (ExceptionViewModel)body;
 		actual = exceptionViewModel.getDeveloperMessage();
 		expected = "Operation not supported request java.lang.UnsupportedOperationException: Not supported\n";
 		assertTrue(actual.startsWith(expected));
