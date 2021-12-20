@@ -1,6 +1,21 @@
 ## Change log
 ----------------------
 
+Version 1.9
+-------------
+
+CHANGED:
+
+- update of ent-api dependency version to 2.1
+- update of spring dependency to version 5.3.14
+- update of spring-batch dependency to version 4.3.4
+- update of hibernate dependency to version 5.4.28.Final
+- update of lombok dependency to version 1.18.22
+- update of spring-data dependency to version 2.6.0
+- update of test dependency mockito to version 4.2.0
+- update of test dependency junit-jupiter-api to version 5.8.2
+- update of gradle-plugin com.github.ben-manes.versions to version 0.39.0
+
 Version 1.8
 -------------
 

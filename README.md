@@ -1,20 +1,27 @@
 # Overview
 
-<div align="center">
+<div style="text-align: center">
 
-[![Build Status](https://travis-ci.org/astrapi69/spring-tool-extensions.svg?branch=develop)](https://travis-ci.org/astrapi69/spring-tool-extensions) 
+[![Build Status](https://api.travis-ci.com/astrapi69/spring-tool-extensions.svg?branch=develop)](https://travis-ci.com/github/astrapi69/spring-tool-extensions) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/spring-tool-extensions/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/spring-tool-extensions?branch=develop) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/spring-tool-extensions.svg?style=flat)](https://github.com/astrapi69/spring-tool-extensions/issues) 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/spring-tool-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/spring-tool-extensions)
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/spring-tool-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/spring-tool-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+[![Hits Of Code](https://hitsofcode.com/github/astrapi69/spring-tool-extensions)](https://hitsofcode.com/github/astrapi69/spring-tool-extensions/view)
+[![Lines Of Code](https://tokei.rs/b1/github/astrapi69/spring-tool-extensions)](https://github.com/astrapi69/spring-tool-extensions)
 
 </div>
 
 Project that holds utility classes for the spring framework
 
-If you like this project put a ⭐ and donate
+> Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/astrapi69/spring-tool-extensions" data-icon="octicon-star" aria-label="Star astrapi69/spring-tool-extensions on GitHub">Star ⭐</a>
+>
+> Share this library with friends on Twitter and everywhere else you can
+>
+> If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
 # Donations
 
@@ -33,7 +40,7 @@ or over ether with:
 or over flattr:
   
 <a href="http://flattr.com/thing/4067696/astrapi69spring-tool-extensions-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none" />
 </a>
 
 ## Note
@@ -43,6 +50,30 @@ No animals were harmed in the making of this library.
 ## License
 
 The source code comes under the liberal MIT License, making spring-tool-extensions great for all types of applications.
+
+## gradle dependency
+
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if
+you want to import the core functionality of spring-tool-extensions:
+
+define version in file gradle.properties
+
+```
+
+springToolExtensionsVersion=1.9
+```
+
+or in build.gradle ext area
+
+```
+	springToolExtensionsVersion = "1.9"
+```
+
+and than add the dependency to the dependencies area
+
+```
+	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
+```
 
 ## Maven dependency
 
@@ -56,7 +87,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
-		<spring-tool-extensions.version>1.8</spring-tool-extensions.version>
+		<spring-tool-extensions.version>1.9</spring-tool-extensions.version>
 			...
 	</properties>
 			...
@@ -71,37 +102,6 @@ Than you can add the dependency to your dependencies:
 			...
 		</dependencies>
 
-	
-## gradle dependency
-
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of spring-tool-extensions:
-
-```
-define version in file gradle.properties
-
-springToolExtensionsVersion=1.8
-```
-
-or in build.gradle ext area
-
-```
-ext {
-			...
-	springToolExtensionsVersion = "1.7.1"
-			...
-}
-```
-
-and than add the dependency to the dependencies area
- 
-```
-dependencies {
-			...
-	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
-			...
-}
-```
-		
 ## Semantic Versioning
 
 The versions of spring-tool-extensions are maintained with the Simplified Semantic Versioning guidelines.
