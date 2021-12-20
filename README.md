@@ -1,6 +1,6 @@
 # Overview
 
-<div align="center">
+<div style="text-align: center">
 
 [![Build Status](https://api.travis-ci.com/astrapi69/spring-tool-extensions.svg?branch=develop)](https://travis-ci.com/github/astrapi69/spring-tool-extensions) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/spring-tool-extensions/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/spring-tool-extensions?branch=develop) 
@@ -9,12 +9,19 @@
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/spring-tool-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/spring-tool-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+[![Hits Of Code](https://hitsofcode.com/github/astrapi69/spring-tool-extensions)](https://hitsofcode.com/github/astrapi69/spring-tool-extensions/view)
+[![Lines Of Code](https://tokei.rs/b1/github/astrapi69/spring-tool-extensions)](https://github.com/astrapi69/spring-tool-extensions)
 
 </div>
 
 Project that holds utility classes for the spring framework
 
-If you like this project put a ⭐ and donate
+> Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/astrapi69/spring-tool-extensions" data-icon="octicon-star" aria-label="Star astrapi69/spring-tool-extensions on GitHub">Star ⭐</a>
+>
+> Share this library with friends on Twitter and everywhere else you can
+>
+> If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
 # Donations
 
@@ -33,7 +40,7 @@ or over ether with:
 or over flattr:
   
 <a href="http://flattr.com/thing/4067696/astrapi69spring-tool-extensions-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none" />
 </a>
 
 ## Note
@@ -74,10 +81,12 @@ Than you can add the dependency to your dependencies:
 	
 ## gradle dependency
 
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of spring-tool-extensions:
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if 
+you want to import the core functionality of spring-tool-extensions:
+
+define version in file gradle.properties
 
 ```
-define version in file gradle.properties
 
 springToolExtensionsVersion=1.8
 ```
@@ -85,21 +94,13 @@ springToolExtensionsVersion=1.8
 or in build.gradle ext area
 
 ```
-ext {
-			...
-	springToolExtensionsVersion = "1.7.1"
-			...
-}
+	springToolExtensionsVersion = "1.8"
 ```
 
 and than add the dependency to the dependencies area
  
 ```
-dependencies {
-			...
 	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
-			...
-}
 ```
 		
 ## Semantic Versioning
