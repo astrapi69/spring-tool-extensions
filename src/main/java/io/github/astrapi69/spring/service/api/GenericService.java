@@ -67,7 +67,7 @@ public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENT
 
 	default void deleteInBatch(@NonNull Iterable<ENTITY> entities)
 	{
-		getRepository().deleteInBatch(entities);
+		getRepository().deleteAllInBatch(entities);
 	}
 
 	default boolean existsById(@NonNull ID id)
@@ -107,7 +107,7 @@ public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENT
 
 	default ENTITY getOne(@NonNull ID id)
 	{
-		return getRepository().getOne(id);
+		return getRepository().getById(id);
 	}
 
 	REPOSITORY getRepository();
