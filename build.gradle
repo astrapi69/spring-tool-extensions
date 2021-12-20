@@ -1,3 +1,6 @@
+group = "$groupPackage"
+version = "$projectVersion"
+description = "$rootProject.name"
 
 buildscript {
     repositories {
@@ -6,57 +9,39 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.freefair.gradle:lombok-plugin:$gradleLombokPluginVersion"
+        classpath "io.freefair.gradle:lombok-plugin:$gradlePluginLombokVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$gradlePluginVersionsVersion"
         classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:$licenseGradlePluginVersion"
+        classpath "org.ajoberstar.grgit:grgit-gradle:$grgitGradlePluginVersion"
     }
 }
 
 apply plugin: "io.freefair.lombok"
 apply plugin: "java"
 apply plugin: "java-library"
-apply plugin: "maven"
 apply plugin: "maven-publish"
 apply plugin: "signing"
 apply plugin: "com.github.ben-manes.versions"
 apply plugin: "com.github.hierynomus.license"
 apply plugin: "jacoco"
 
-group = "$groupPackage"
-version = "$projectVersion"
-description = "$rootProject.name"
+apply plugin: "org.ajoberstar.grgit"
+
+task tagRelease {
+    description = "Tags the current head with the project\'s version."
+    doLast {
+        grgit.tag.add {
+            name = "RELEASE-${project.version.toString()}"
+            message = "New release in version ${version}"
+        }
+    }
+}
+
 sourceCompatibility = "$projectSourceCompatibility"
 
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
-}
-
-tasks.withType(GenerateModuleMetadata) {
-    enabled = false
-}
-
-javadoc {
-    failOnError = false
-    if(JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption("html5", true)
-    }
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
-
-test {
-    useJUnitPlatform()
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
 }
 
 task sourcesJar(type: Jar) {
@@ -68,6 +53,24 @@ task javadocJar(type: Jar) {
     from javadoc
     archiveClassifier.set("javadoc")
     javadoc.properties.failOnError = true
+}
+
+javadoc {
+    failOnError = false
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption("html5", true)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
 }
 
 check.dependsOn jacocoTestReport
@@ -190,14 +193,14 @@ dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     compileOnly("javax.persistence:javax.persistence-api:$javaxPersistenceApiVersion")
     implementation("javax.validation:validation-api:$validationApiVersion")
-    implementation("de.alpharogroup:ent-api:$entApiVersion")
-    implementation("de.alpharogroup:bean-mapper-api:$beanMapperApiVersion")
-    implementation("de.alpharogroup:generic-mapper:$genericMapperVersion")
-    implementation("de.alpharogroup:jobj-copy:$jobjCopyVersion")
-    implementation("de.alpharogroup:throw-able:$throwAbleVersion")
-    implementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
-    implementation("de.alpharogroup:silly-beans:$sillyBeansVersion")
-    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    implementation("io.github.astrapi69:ent-api:$entApiVersion")
+    implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
+    implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
+    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
+    implementation("io.github.astrapi69:throw-able:$throwAbleVersion")
+    implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
+    implementation("io.github.astrapi69:silly-beans:$sillyBeansVersion")
+    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
     implementation("io.swagger:swagger-annotations:$swaggerAnnotationsVersion")
     implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
     implementation("org.hibernate:hibernate-core:$hibernateCoreVersion")
