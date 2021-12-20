@@ -51,6 +51,30 @@ No animals were harmed in the making of this library.
 
 The source code comes under the liberal MIT License, making spring-tool-extensions great for all types of applications.
 
+## gradle dependency
+
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if
+you want to import the core functionality of spring-tool-extensions:
+
+define version in file gradle.properties
+
+```
+
+springToolExtensionsVersion=1.9
+```
+
+or in build.gradle ext area
+
+```
+	springToolExtensionsVersion = "1.9"
+```
+
+and than add the dependency to the dependencies area
+
+```
+	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
+```
+
 ## Maven dependency
 
 Maven dependency is now on sonatype.
@@ -63,7 +87,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
-		<spring-tool-extensions.version>1.8</spring-tool-extensions.version>
+		<spring-tool-extensions.version>1.9</spring-tool-extensions.version>
 			...
 	</properties>
 			...
@@ -78,31 +102,6 @@ Than you can add the dependency to your dependencies:
 			...
 		</dependencies>
 
-	
-## gradle dependency
-
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if 
-you want to import the core functionality of spring-tool-extensions:
-
-define version in file gradle.properties
-
-```
-
-springToolExtensionsVersion=1.8
-```
-
-or in build.gradle ext area
-
-```
-	springToolExtensionsVersion = "1.8"
-```
-
-and than add the dependency to the dependencies area
- 
-```
-	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
-```
-		
 ## Semantic Versioning
 
 The versions of spring-tool-extensions are maintained with the Simplified Semantic Versioning guidelines.
