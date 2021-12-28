@@ -39,14 +39,20 @@ public class UrlExtensions
 {
 
 	public static String getBaseUrl(@NonNull final String scheme, @NonNull final String host,
-		int serverPort, @NonNull final String restVersion, @NonNull final String restPath)
+		int serverPort, @NonNull final String restPath)
 	{
 		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
 		uriComponentsBuilder.scheme(scheme);
 		uriComponentsBuilder.host(host);
 		uriComponentsBuilder.port(serverPort);
-		uriComponentsBuilder.path(restVersion + "/" + restPath);
+		uriComponentsBuilder.path(restPath);
 		return uriComponentsBuilder.toUriString();
+	}
+
+	public static String getBaseUrl(@NonNull final String scheme, @NonNull final String host,
+		int serverPort, @NonNull final String restVersion, @NonNull final String restPath)
+	{
+		return getBaseUrl(scheme, host, serverPort, restVersion + "/" + restPath);
 	}
 
 	public static String newBaseUrl(String scheme, String domainName, int port,
