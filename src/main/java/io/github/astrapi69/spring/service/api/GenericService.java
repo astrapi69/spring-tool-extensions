@@ -29,6 +29,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import de.alpharogroup.merge.object.MergeObjectExtensions;
 import lombok.NonNull;
 
 import org.springframework.data.domain.Page;
@@ -158,7 +159,7 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 		ENTITY toUpdate = getById(entity.getId());
 		try
 		{
-			CopyObjectExtensions.copy(toUpdate, entity);
+			MergeObjectExtensions.merge(entity, toUpdate);
 		}
 		catch (Exception e)
 		{
