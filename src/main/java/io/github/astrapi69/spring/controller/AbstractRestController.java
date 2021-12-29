@@ -24,11 +24,13 @@
  */
 package io.github.astrapi69.spring.controller;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import io.github.astrapi69.entity.identifiable.Identifiable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,7 +57,7 @@ import io.swagger.annotations.ApiOperation;
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
+public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends Serializable, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
 {
 
 	GenericModelMapper<ENTITY, DTO> mapper;

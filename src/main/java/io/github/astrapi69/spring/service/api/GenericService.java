@@ -24,7 +24,10 @@
  */
 package io.github.astrapi69.spring.service.api;
 
+import java.io.Serializable;
 import java.util.Optional;
+
+import javax.persistence.EntityManager;
 
 import lombok.NonNull;
 
@@ -33,9 +36,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityManager;
+import io.github.astrapi69.copy.object.CopyObjectExtensions;
+import io.github.astrapi69.entity.identifiable.Identifiable;
 
-public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>>
+public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Serializable, REPOSITORY extends JpaRepository<ENTITY, ID>>
 {
 	default long count()
 	{
@@ -108,14 +112,15 @@ public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENT
 	}
 
 	/**
-	 * Returns a reference to the entity with the given identifier. Depending on how the JPA persistence provider is
-	 * implemented this is very likely to always return an instance and throw an
-	 * {@link javax.persistence.EntityNotFoundException} on first access. Some of them will reject invalid identifiers
-	 * immediately.
+	 * Returns a reference to the entity with the given identifier. Depending on how the JPA
+	 * persistence provider is implemented this is very likely to always return an instance and
+	 * throw an {@link javax.persistence.EntityNotFoundException} on first access. Some of them will
+	 * reject invalid identifiers immediately.
 	 *
 	 * Note: will be removed on next minor release.
 	 *
-	 * @param id must not be {@literal null}.
+	 * @param id
+	 *            must not be {@literal null}.
 	 * @return a reference to the entity with the given identifier.
 	 * @see EntityManager#getReference(Class, Object) for details on when an exception is thrown.
 	 * @deprecated use {@link GenericService#getById(ID)} instead.
@@ -146,6 +151,21 @@ public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENT
 	default ENTITY saveAndFlush(@NonNull ENTITY entity)
 	{
 		return getRepository().saveAndFlush(entity);
+	}
+
+	default ENTITY update(@NonNull ENTITY entity)
+	{
+		ENTITY toUpdate = getById(entity.getId());
+		try
+		{
+			CopyObjectExtensions.copy(toUpdate, entity);
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+		ENTITY updatedEntity = save(entity);
+		return updatedEntity;
 	}
 
 }
