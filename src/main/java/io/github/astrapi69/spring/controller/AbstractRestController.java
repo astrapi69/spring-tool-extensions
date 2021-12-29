@@ -62,11 +62,23 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 
 	GenericService<ENTITY, ID, REPOSITORY> service;
 
+	@ApiOperation(value = "Delete the given json object")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "json", value = "the json object to delete", paramType = "body") })
+	@RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<DTO> delete(@Valid @RequestBody DTO viewModel)
+	{
+		ENTITY entity = mapper.toEntity(viewModel);
+		this.service.delete(entity);
+		return ResponseEntity.ok(viewModel);
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Delete the entity from the given id")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "the id from the entity to delete", paramType = "query") })
-	public Map<String, Object> delete(@PathVariable ID id)
+	public Map<String, Object> deleteById(@PathVariable ID id)
 	{
 		Optional<ENTITY> optionalEntity = this.service.findById(id);
 		Map<String, Object> map = MapFactory.newHashMap();
@@ -97,7 +109,7 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DTO> get(@PathVariable ID id)
 	{
-		return Optional.ofNullable(this.service.getOne(id))
+		return Optional.ofNullable(this.service.getById(id))
 			.map(obj -> new ResponseEntity<>(mapper.toDto(obj), HttpStatus.OK))
 			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
@@ -110,7 +122,8 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 	@ResponseBody
 	public ResponseEntity<DTO> save(@Valid @RequestBody DTO viewModel)
 	{
-		ENTITY created = this.service.save(mapper.toEntity(viewModel));
+		ENTITY entity = mapper.toEntity(viewModel);
+		ENTITY created = this.service.save(entity);
 		DTO dto = mapper.toDto(created);
 		return ResponseEntity.ok(dto);
 	}
@@ -123,7 +136,7 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json)
 	{
-		return Optional.ofNullable(this.service.getOne(id)).map(entity -> {
+		return Optional.ofNullable(this.service.getById(id)).map(entity -> {
 			ENTITY toUpdate = mapper.toEntity(json);
 			try
 			{

@@ -33,6 +33,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.persistence.EntityManager;
+
 public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>>
 {
 	default long count()
@@ -105,7 +107,26 @@ public interface GenericService<ENTITY, ID, REPOSITORY extends JpaRepository<ENT
 		getRepository().flush();
 	}
 
+	/**
+	 * Returns a reference to the entity with the given identifier. Depending on how the JPA persistence provider is
+	 * implemented this is very likely to always return an instance and throw an
+	 * {@link javax.persistence.EntityNotFoundException} on first access. Some of them will reject invalid identifiers
+	 * immediately.
+	 *
+	 * Note: will be removed on next minor release.
+	 *
+	 * @param id must not be {@literal null}.
+	 * @return a reference to the entity with the given identifier.
+	 * @see EntityManager#getReference(Class, Object) for details on when an exception is thrown.
+	 * @deprecated use {@link GenericService#getById(ID)} instead.
+	 */
+	@Deprecated
 	default ENTITY getOne(@NonNull ID id)
+	{
+		return getRepository().getById(id);
+	}
+
+	default ENTITY getById(@NonNull ID id)
 	{
 		return getRepository().getById(id);
 	}
