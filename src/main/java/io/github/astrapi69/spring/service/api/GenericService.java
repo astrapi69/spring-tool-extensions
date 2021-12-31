@@ -29,7 +29,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
-import de.alpharogroup.merge.object.MergeObjectExtensions;
+import io.github.astrapi69.merge.object.MergeObjectExtensions;
 import lombok.NonNull;
 
 import org.springframework.data.domain.Page;
@@ -37,7 +37,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import io.github.astrapi69.copy.object.CopyObjectExtensions;
 import io.github.astrapi69.entity.identifiable.Identifiable;
 
 public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Serializable, REPOSITORY extends JpaRepository<ENTITY, ID>>

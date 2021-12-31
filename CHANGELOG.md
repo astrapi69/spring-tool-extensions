@@ -4,6 +4,14 @@
 Version 1.10-SNAPSHOT
 -------------
 
+ADDED:
+
+- new jobj-merge dependency in version 3.3
+
+CHANGED:
+
+- update of jobj-copy dependency to new version 3.4
+
 Version 1.9
 -------------
 
