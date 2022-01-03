@@ -48,7 +48,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.astrapi69.bean.mapper.GenericModelMapper;
 import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.copy.object.CopyObjectExtensions;
 import io.github.astrapi69.spring.service.api.GenericService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -139,18 +138,7 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json)
 	{
 		return Optional.ofNullable(this.service.getById(id)).map(entity -> {
-			ENTITY toUpdate = mapper.toEntity(json);
-			try
-			{
-				CopyObjectExtensions.copy(toUpdate, entity);
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException(e);
-			}
-
 			ENTITY updatedEntity = this.service.save(entity);
-
 			return new ResponseEntity<>(mapper.toDto(updatedEntity), HttpStatus.OK);
 		}).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}

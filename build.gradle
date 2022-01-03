@@ -208,8 +208,6 @@ dependencies {
     implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
     implementation("io.github.astrapi69:silly-beans:$sillyBeansVersion")
     implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
-    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
-    implementation("io.github.astrapi69:jobj-merge:$jobjMergeVersion")
     implementation("io.swagger:swagger-annotations:$swaggerAnnotationsVersion")
     implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
     implementation("org.hibernate:hibernate-core:$hibernateCoreVersion")

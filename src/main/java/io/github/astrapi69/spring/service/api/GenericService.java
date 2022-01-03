@@ -29,7 +29,6 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
-import io.github.astrapi69.merge.object.MergeObjectExtensions;
 import lombok.NonNull;
 
 import org.springframework.data.domain.Page;
@@ -76,10 +75,16 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 		getRepository().deleteAllInBatch(entities);
 	}
 
+	default boolean exists(@NonNull ENTITY entity)
+	{
+		return existsById(entity.getId());
+	}
+
 	default boolean existsById(@NonNull ID id)
 	{
 		return getRepository().existsById(id);
 	}
+
 
 	default Iterable<ENTITY> findAll()
 	{
@@ -111,6 +116,11 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 		getRepository().flush();
 	}
 
+	default ENTITY getById(@NonNull ID id)
+	{
+		return getRepository().getById(id);
+	}
+
 	/**
 	 * Returns a reference to the entity with the given identifier. Depending on how the JPA
 	 * persistence provider is implemented this is very likely to always return an instance and
@@ -127,11 +137,6 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 	 */
 	@Deprecated
 	default ENTITY getOne(@NonNull ID id)
-	{
-		return getRepository().getById(id);
-	}
-
-	default ENTITY getById(@NonNull ID id)
 	{
 		return getRepository().getById(id);
 	}
@@ -155,17 +160,7 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 
 	default ENTITY update(@NonNull ENTITY entity)
 	{
-		ENTITY toUpdate = getById(entity.getId());
-		try
-		{
-			MergeObjectExtensions.merge(entity, toUpdate);
-		}
-		catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
-		ENTITY updatedEntity = save(entity);
-		return updatedEntity;
+		return save(entity);
 	}
 
 }

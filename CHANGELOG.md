@@ -4,13 +4,12 @@
 Version 1.10-SNAPSHOT
 -------------
 
-ADDED:
-
-- new jobj-merge dependency in version 3.3
-
 CHANGED:
 
-- update of jobj-copy dependency to new version 3.4
+- update of jobj-core dependency version to 5.1
+- update of gradle-plugin com.github.ben-manes.versions to version 0.40.0
+- remove of jobj-copy dependency
+- remove of jobj-merge dependency
 
 Version 1.9
 -------------
