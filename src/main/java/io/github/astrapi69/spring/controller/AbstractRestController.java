@@ -30,7 +30,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import io.github.astrapi69.entity.identifiable.Identifiable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,6 +47,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.astrapi69.bean.mapper.GenericModelMapper;
 import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.entity.identifiable.Identifiable;
 import io.github.astrapi69.spring.service.api.GenericService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -65,7 +65,7 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 
 	@ApiOperation(value = "Delete the given json object")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "json", value = "the json object to delete", paramType = "body") })
+			@ApiImplicitParam(name = "json", value = "the json object to delete", paramType = "body") })
 	@RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<DTO> delete(@Valid @RequestBody DTO viewModel)
