@@ -99,9 +99,9 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Find all entities")
-	public Iterable<ENTITY> findAll()
+	public Iterable<DTO> findAll()
 	{
-		return this.service.findAll();
+		return mapper.toDtos(this.service.findAll());
 	}
 
 	@ApiOperation(value = "Get the entity from the given id")
