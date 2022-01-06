@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.spring.controller;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,7 +47,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.astrapi69.bean.mapper.GenericModelMapper;
 import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.copy.object.CopyObjectExtensions;
+import io.github.astrapi69.entity.identifiable.Identifiable;
 import io.github.astrapi69.spring.service.api.GenericService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -55,18 +56,30 @@ import io.swagger.annotations.ApiOperation;
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
+public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends Serializable, REPOSITORY extends JpaRepository<ENTITY, ID>, DTO>
 {
 
 	GenericModelMapper<ENTITY, DTO> mapper;
 
 	GenericService<ENTITY, ID, REPOSITORY> service;
 
+	@ApiOperation(value = "Delete the given json object")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "json", value = "the json object to delete", paramType = "body") })
+	@RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<DTO> delete(@Valid @RequestBody DTO viewModel)
+	{
+		ENTITY entity = mapper.toEntity(viewModel);
+		this.service.delete(entity);
+		return ResponseEntity.ok(viewModel);
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Delete the entity from the given id")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "the id from the entity to delete", paramType = "query") })
-	public Map<String, Object> delete(@PathVariable ID id)
+	public Map<String, Object> deleteById(@PathVariable ID id)
 	{
 		Optional<ENTITY> optionalEntity = this.service.findById(id);
 		Map<String, Object> map = MapFactory.newHashMap();
@@ -86,9 +99,9 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Find all entities")
-	public Iterable<ENTITY> findAll()
+	public Iterable<DTO> findAll()
 	{
-		return this.service.findAll();
+		return mapper.toDtos(this.service.findAll());
 	}
 
 	@ApiOperation(value = "Get the entity from the given id")
@@ -97,7 +110,7 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DTO> get(@PathVariable ID id)
 	{
-		return Optional.ofNullable(this.service.getOne(id))
+		return Optional.ofNullable(this.service.getById(id))
 			.map(obj -> new ResponseEntity<>(mapper.toDto(obj), HttpStatus.OK))
 			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
@@ -110,7 +123,8 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 	@ResponseBody
 	public ResponseEntity<DTO> save(@Valid @RequestBody DTO viewModel)
 	{
-		ENTITY created = this.service.save(mapper.toEntity(viewModel));
+		ENTITY entity = mapper.toEntity(viewModel);
+		ENTITY created = this.service.save(entity);
 		DTO dto = mapper.toDto(created);
 		return ResponseEntity.ok(dto);
 	}
@@ -123,19 +137,8 @@ public class AbstractRestController<ENTITY, ID, REPOSITORY extends JpaRepository
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json)
 	{
-		return Optional.ofNullable(this.service.getOne(id)).map(entity -> {
-			ENTITY toUpdate = mapper.toEntity(json);
-			try
-			{
-				CopyObjectExtensions.copy(toUpdate, entity);
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException(e);
-			}
-
+		return Optional.ofNullable(this.service.getById(id)).map(entity -> {
 			ENTITY updatedEntity = this.service.save(entity);
-
 			return new ResponseEntity<>(mapper.toDto(updatedEntity), HttpStatus.OK);
 		}).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}

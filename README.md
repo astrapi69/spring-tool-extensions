@@ -23,6 +23,57 @@ Project that holds utility classes for the spring framework
 >
 > If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
+## gradle dependency
+
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if
+you want to import the core functionality of spring-tool-extensions:
+
+define version in file gradle.properties
+
+```
+
+springToolExtensionsVersion=1.10
+```
+
+or in build.gradle ext area
+
+```
+	springToolExtensionsVersion = "1.10"
+```
+
+and than add the dependency to the dependencies area
+
+```
+	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
+```
+
+## Maven dependency
+
+Maven dependency is now on sonatype.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~spring-tool-extensions~~~) for latest snapshots and releases.
+
+Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of spring-tool-extensions:
+
+Than you can add the dependency to your dependencies:
+
+	<properties>
+			...
+		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
+		<spring-tool-extensions.version>1.10</spring-tool-extensions.version>
+			...
+	</properties>
+			...
+		<dependencies>
+			...
+			<!-- SPRING-TOOL-EXTENSIONS DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>spring-tool-extensions</artifactId>
+				<version>${spring-tool-extensions.version}</version>
+			</dependency>
+			...
+		</dependencies>
+
 # Donations
 
 If you like this library, please consider a donation through paypal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MJ7V43GU2H386" target="_blank">
@@ -50,57 +101,6 @@ No animals were harmed in the making of this library.
 ## License
 
 The source code comes under the liberal MIT License, making spring-tool-extensions great for all types of applications.
-
-## gradle dependency
-
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if
-you want to import the core functionality of spring-tool-extensions:
-
-define version in file gradle.properties
-
-```
-
-springToolExtensionsVersion=1.9
-```
-
-or in build.gradle ext area
-
-```
-	springToolExtensionsVersion = "1.9"
-```
-
-and than add the dependency to the dependencies area
-
-```
-	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
-```
-
-## Maven dependency
-
-Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~spring-tool-extensions~~~) for latest snapshots and releases.
-
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of spring-tool-extensions:
-
-Than you can add the dependency to your dependencies:
-
-	<properties>
-			...
-		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
-		<spring-tool-extensions.version>1.9</spring-tool-extensions.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
-			<!-- SPRING-TOOL-EXTENSIONS DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>spring-tool-extensions</artifactId>
-				<version>${spring-tool-extensions.version}</version>
-			</dependency>
-			...
-		</dependencies>
 
 ## Semantic Versioning
 

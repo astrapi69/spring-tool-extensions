@@ -204,7 +204,6 @@ dependencies {
     implementation("io.github.astrapi69:ent-api:$entApiVersion")
     implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
     implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
-    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
     implementation("io.github.astrapi69:throw-able:$throwAbleVersion")
     implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
     implementation("io.github.astrapi69:silly-beans:$sillyBeansVersion")

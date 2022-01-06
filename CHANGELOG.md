@@ -1,6 +1,18 @@
 ## Change log
 ----------------------
 
+Version 1.10
+-------------
+
+CHANGED:
+
+- update of gradle-plugin com.github.ben-manes.versions to version 0.41.0
+- update of jobj-core dependency version to 5.2
+- remove of jobj-copy dependency
+- remove of jobj-merge dependency
+- update of bean-mapper-api dependency version to 1.2
+- update of generic-mapper dependency version to 2.6
+
 Version 1.9
 -------------
 

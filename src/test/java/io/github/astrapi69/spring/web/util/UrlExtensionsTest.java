@@ -87,6 +87,10 @@ class UrlExtensionsTest
 		actual = UrlExtensions.getBaseUrl("http", "localhost", 8080, "v1", "resource");
 		expected = "http://localhost:8080/v1/resource";
 		assertEquals(expected, actual);
+		//
+		actual = UrlExtensions.getBaseUrl("http", "localhost", 8080, "v1" + "/" + "resource");
+		expected = "http://localhost:8080/v1/resource";
+		assertEquals(expected, actual);
 	}
 
 	@Test
