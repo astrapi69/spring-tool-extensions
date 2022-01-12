@@ -4,6 +4,9 @@
 Version 1.11-SNAPSHOT
 -------------
 
+CHANGED:
+
+- method names in class AbstractSwaggerConfiguration from getter to factory methods with new prefix
 
 Version 1.10
 -------------
