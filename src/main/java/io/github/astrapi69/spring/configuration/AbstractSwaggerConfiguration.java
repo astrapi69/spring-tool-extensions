@@ -26,8 +26,7 @@ package io.github.astrapi69.spring.configuration;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
-import java.util.Collections;
-
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -38,51 +37,63 @@ public abstract class AbstractSwaggerConfiguration
 {
 	public Docket api()
 	{
-		return new Docket(DocumentationType.SWAGGER_2).select()
-			.apis(RequestHandlerSelectors.basePackage(getBasePackage()))
-			.paths(regex(getDocketPathsPathRegex())).build().apiInfo(metaData());
+		return new Docket(DocumentationType.SWAGGER_2)
+			.select()
+			.apis(RequestHandlerSelectors.basePackage(newBasePackage()))
+			.paths(regex(newDocketPathsRegex()))
+			.build()
+			.apiInfo(metaData());
 	}
 
-	public abstract String getApiInfoDescription();
+	protected abstract String newApiInfoDescription();
 
-	protected String getApiInfoTermsOfServiceUrl()
+	protected String newApiInfoTermsOfServiceUrl()
 	{
 		return "";
 	}
 
-	public abstract String getApiInfoTitle();
+	protected abstract String newApiInfoTitle();
 
-	public abstract String getApiInfoVersion();
+	protected abstract String newApiInfoVersion();
 
-	public abstract String getBasePackage();
+	protected abstract String newBasePackage();
 
-	public String getContactEmail()
+	protected String newContactEmail()
 	{
 		return "";
 	}
 
-	public String getContactLicense()
+	protected String newApiInfoLicense()
 	{
 		return "";
 	}
 
-	public String getContactLicenseUrl()
+	protected String newApiInfoLicenseUrl()
 	{
 		return "";
 	}
 
-	public abstract String getContactName();
+	protected abstract String newContactName();
 
-	public abstract String getContactUrl();
+	protected abstract String newContactUrl();
 
-	public abstract String getDocketPathsPathRegex();
+	protected abstract String newDocketPathsRegex();
+
+	protected Contact newContact() {
+		return new Contact(newContactName(), newContactUrl(), newContactEmail());
+	}
 
 	protected ApiInfo metaData()
 	{
-		return new ApiInfo(getApiInfoTitle(), getApiInfoDescription(), getApiInfoVersion(),
-			getApiInfoTermsOfServiceUrl(),
-			new Contact(getContactName(), getContactUrl(), getContactEmail()), getContactLicense(),
-			getContactLicenseUrl(), Collections.emptyList());
+		return new ApiInfoBuilder()
+			.title(newApiInfoTitle())
+			.termsOfServiceUrl(newApiInfoTermsOfServiceUrl())
+			.description(newApiInfoDescription())
+			.version(newApiInfoVersion())
+			.license(newApiInfoLicense())
+			.licenseUrl(newApiInfoLicenseUrl())
+			.contact(newContact())
+			.build();
 	}
 
 }
