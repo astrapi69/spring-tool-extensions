@@ -40,7 +40,7 @@ public abstract class AbstractSwaggerConfiguration
 		return new Docket(DocumentationType.SWAGGER_2)
 			.select()
 			.apis(RequestHandlerSelectors.basePackage(newBasePackage()))
-			.paths(regex(newDocketPathsPathRegex()))
+			.paths(regex(newDocketPathsRegex()))
 			.build()
 			.apiInfo(metaData());
 	}
@@ -77,7 +77,7 @@ public abstract class AbstractSwaggerConfiguration
 
 	protected abstract String newContactUrl();
 
-	protected abstract String newDocketPathsPathRegex();
+	protected abstract String newDocketPathsRegex();
 
 	protected Contact newContact() {
 		return new Contact(newContactName(), newContactUrl(), newContactEmail());
