@@ -1,6 +1,23 @@
 ## Change log
 ----------------------
 
+Version 1.11
+-------------
+
+ADDED:
+
+- new gradle plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.2.2
+- new dependency data-api in major version 3
+
+CHANGED:
+
+- update gradle to new version 7.4
+- remove of dependency ent-api (replaced with new dependency data-api)
+- update of dependency spring to new version 5.3.15
+- update of dependency spring-data to new version 2.6.1
+- update of dependency jobj-core to new version 5.3
+- update of test dependency mockito-core to new version 4.3.1
+
 Version 1.10.1
 -------------
 
@@ -165,5 +182,5 @@ Version 1
 -------------
 
 ADDED:
- 
+
 - this changelog file

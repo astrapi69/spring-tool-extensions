@@ -36,7 +36,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import io.github.astrapi69.entity.identifiable.Identifiable;
+import io.github.astrapi69.data.identifiable.Identifiable;
 
 public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Serializable, REPOSITORY extends JpaRepository<ENTITY, ID>>
 {

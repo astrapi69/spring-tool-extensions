@@ -29,7 +29,7 @@ import java.io.Serializable;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
-import io.github.astrapi69.entity.identifiable.Identifiable;
+import io.github.astrapi69.data.identifiable.Identifiable;
 
 /**
  * The class {@link IdentifiableSequenceStyleGenerator} is custom implementation of

@@ -29,7 +29,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import io.github.astrapi69.collections.list.ListExtensions;
-import io.github.astrapi69.entity.nameable.Nameable;
+import io.github.astrapi69.data.nameable.Nameable;
 
 public interface NameEntityService<T extends Nameable>
 {
