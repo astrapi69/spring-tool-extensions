@@ -2,9 +2,9 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/spring-tool-extensions.svg?branch=develop)](https://travis-ci.com/github/astrapi69/spring-tool-extensions) 
-[![Coverage Status](https://coveralls.io/repos/github/astrapi69/spring-tool-extensions/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/spring-tool-extensions?branch=develop) 
-[![Open Issues](https://img.shields.io/github/issues/astrapi69/spring-tool-extensions.svg?style=flat)](https://github.com/astrapi69/spring-tool-extensions/issues) 
+[![Build Status](https://api.travis-ci.com/astrapi69/spring-tool-extensions.svg?branch=develop)](https://travis-ci.com/github/astrapi69/spring-tool-extensions)
+[![Coverage Status](https://coveralls.io/repos/github/astrapi69/spring-tool-extensions/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/spring-tool-extensions?branch=develop)
+[![Open Issues](https://img.shields.io/github/issues/astrapi69/spring-tool-extensions.svg?style=flat)](https://github.com/astrapi69/spring-tool-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/spring-tool-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/spring-tool-extensions)
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/spring-tool-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/spring-tool-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
@@ -38,13 +38,13 @@ springToolExtensionsVersion=1.10.1
 or in build.gradle ext area
 
 ```
-	springToolExtensionsVersion = "1.10.1"
+    springToolExtensionsVersion = "1.10.1"
 ```
 
 and than add the dependency to the dependencies area
 
 ```
-	implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
+    implementation("de.alpharogroup:spring-tool-extensions:$springToolExtensionsVersion")
 ```
 
 ## Maven dependency
@@ -56,23 +56,23 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
-	<properties>
-			...
-		<!-- SPRING-TOOL-EXTENSIONS VERSION -->
-		<spring-tool-extensions.version>1.10.1</spring-tool-extensions.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
-			<!-- SPRING-TOOL-EXTENSIONS DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>spring-tool-extensions</artifactId>
-				<version>${spring-tool-extensions.version}</version>
-			</dependency>
-			...
-		</dependencies>
+    <properties>
+            ...
+        <!-- SPRING-TOOL-EXTENSIONS VERSION -->
+        <spring-tool-extensions.version>1.10.1</spring-tool-extensions.version>
+            ...
+    </properties>
+            ...
+        <dependencies>
+            ...
+            <!-- SPRING-TOOL-EXTENSIONS DEPENDENCY -->
+            <dependency>
+                <groupId>de.alpharogroup</groupId>
+                <artifactId>spring-tool-extensions</artifactId>
+                <version>${spring-tool-extensions.version}</version>
+            </dependency>
+            ...
+        </dependencies>
 
 # Donations
 
@@ -89,7 +89,7 @@ or over ether with:
 0x588Aa02De98B1Ef70afeDC3ec5290130a3E5e273
 
 or over flattr:
-  
+
 <a href="http://flattr.com/thing/4067696/astrapi69spring-tool-extensions-on-GitHub" target="_blank">
 <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none" />
 </a>
@@ -152,4 +152,3 @@ Do not hesitate to contact the spring-tool-extensions developers with your quest
 |[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/spring-tool-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/spring-tool-extensions)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
-

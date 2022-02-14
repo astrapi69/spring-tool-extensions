@@ -37,12 +37,9 @@ public abstract class AbstractSwaggerConfiguration
 {
 	public Docket api()
 	{
-		return new Docket(DocumentationType.SWAGGER_2)
-			.select()
+		return new Docket(DocumentationType.SWAGGER_2).select()
 			.apis(RequestHandlerSelectors.basePackage(newBasePackage()))
-			.paths(regex(newDocketPathsRegex()))
-			.build()
-			.apiInfo(metaData());
+			.paths(regex(newDocketPathsRegex())).build().apiInfo(metaData());
 	}
 
 	protected abstract String newApiInfoDescription();
@@ -79,21 +76,17 @@ public abstract class AbstractSwaggerConfiguration
 
 	protected abstract String newDocketPathsRegex();
 
-	protected Contact newContact() {
+	protected Contact newContact()
+	{
 		return new Contact(newContactName(), newContactUrl(), newContactEmail());
 	}
 
 	protected ApiInfo metaData()
 	{
-		return new ApiInfoBuilder()
-			.title(newApiInfoTitle())
-			.termsOfServiceUrl(newApiInfoTermsOfServiceUrl())
-			.description(newApiInfoDescription())
-			.version(newApiInfoVersion())
-			.license(newApiInfoLicense())
-			.licenseUrl(newApiInfoLicenseUrl())
-			.contact(newContact())
-			.build();
+		return new ApiInfoBuilder().title(newApiInfoTitle())
+			.termsOfServiceUrl(newApiInfoTermsOfServiceUrl()).description(newApiInfoDescription())
+			.version(newApiInfoVersion()).license(newApiInfoLicense())
+			.licenseUrl(newApiInfoLicenseUrl()).contact(newContact()).build();
 	}
 
 }

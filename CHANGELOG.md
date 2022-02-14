@@ -4,6 +4,10 @@
 Version 1.11-SNAPSHOT
 -------------
 
+ADDED:
+
+- new gradle plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.2.2
+
 CHANGED:
 
 - update gradle to new version 7.4
@@ -172,5 +176,5 @@ Version 1
 -------------
 
 ADDED:
- 
+
 - this changelog file
