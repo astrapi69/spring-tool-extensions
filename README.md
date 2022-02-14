@@ -30,13 +30,13 @@ define version in file gradle.properties
 
 ```
 
-springToolExtensionsVersion=1.10.1
+springToolExtensionsVersion=1.11
 ```
 
 or in build.gradle ext area
 
 ```
-    springToolExtensionsVersion = "1.10.1"
+    springToolExtensionsVersion = "1.11"
 ```
 
 and than add the dependency to the dependencies area
@@ -57,7 +57,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- SPRING-TOOL-EXTENSIONS VERSION -->
-        <spring-tool-extensions.version>1.10.1</spring-tool-extensions.version>
+        <spring-tool-extensions.version>1.11</spring-tool-extensions.version>
             ...
     </properties>
             ...
