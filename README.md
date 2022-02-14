@@ -3,7 +3,6 @@
 <div style="text-align: center">
 
 [![Java CI with Gradle](https://github.com/astrapi69/spring-tool-extensions/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/spring-tool-extensions/actions/workflows/gradle.yml)
-[![Coverage Status](https://codecov.io/gh/astrapi69/spring-tool-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/spring-tool-extensions)
 [![Build Status](https://api.travis-ci.com/astrapi69/spring-tool-extensions.svg?branch=develop)](https://travis-ci.com/github/astrapi69/spring-tool-extensions)
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/spring-tool-extensions/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/spring-tool-extensions?branch=develop)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/spring-tool-extensions.svg?style=flat)](https://github.com/astrapi69/spring-tool-extensions/issues)
