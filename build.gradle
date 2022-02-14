@@ -219,7 +219,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     compileOnly("javax.persistence:javax.persistence-api:$javaxPersistenceApiVersion")
     implementation("javax.validation:validation-api:$validationApiVersion")
-    implementation("io.github.astrapi69:ent-api:$entApiVersion")
+    implementation("io.github.astrapi69:data-api:$dataApiVersion")
     implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
     implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
     implementation("io.github.astrapi69:throw-able:$throwAbleVersion")
