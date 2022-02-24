@@ -4,7 +4,13 @@
 Version 1.12-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update of gradle plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new version 6.3.0
+- update of gradle plugin dependency 'io.freefair.gradle:lombok-plugin' to new version 6.4.1
+- update of dependency spring to new version 5.3.16
+- update of dependency spring-data to new version 2.6.2
+- update of spring-batch dependency to version 4.3.5
 
 Version 1.11
 -------------
