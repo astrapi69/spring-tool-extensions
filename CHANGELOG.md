@@ -7,6 +7,7 @@ Version 1.12-SNAPSHOT
 ADDED:
 
 - new enum for base rest path values
+- new enum for base action that follows after base rest paths
 
 CHANGED:
 
