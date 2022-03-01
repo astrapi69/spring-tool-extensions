@@ -4,6 +4,10 @@
 Version 1.12-SNAPSHOT
 -------------
 
+ADDED:
+
+- new enum for base rest path values
+
 CHANGED:
 
 - update of gradle plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new version 6.3.0
