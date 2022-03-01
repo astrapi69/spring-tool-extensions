@@ -66,18 +66,18 @@ public enum BaseRestPath
 	public static final String REST_API_VERSION_4 = "v4";
 	public static final String REST_API_VERSION_5 = "v5";
 	public static final String REST_VERSION_1 = SLASH + REST_API_VERSION_1;
-	public static final String REST_VERSION_2 = SLASH + REST_API_VERSION_2;
-	public static final String REST_VERSION_3 = SLASH + REST_API_VERSION_3;
-	public static final String REST_VERSION_4 = SLASH + REST_API_VERSION_4;
-	public static final String REST_VERSION_5 = SLASH + REST_API_VERSION_5;
 	public static final String REST_VERSION_1_DOCKET_PATHS_REGEX = REST_VERSION_1
 		+ REST_DOCKET_PATHS_REGEX_SUFFIX;
+	public static final String REST_VERSION_2 = SLASH + REST_API_VERSION_2;
 	public static final String REST_VERSION_2_DOCKET_PATHS_REGEX = REST_VERSION_2
 		+ REST_DOCKET_PATHS_REGEX_SUFFIX;
+	public static final String REST_VERSION_3 = SLASH + REST_API_VERSION_3;
 	public static final String REST_VERSION_3_DOCKET_PATHS_REGEX = REST_VERSION_3
 		+ REST_DOCKET_PATHS_REGEX_SUFFIX;
+	public static final String REST_VERSION_4 = SLASH + REST_API_VERSION_4;
 	public static final String REST_VERSION_4_DOCKET_PATHS_REGEX = REST_VERSION_4
 		+ REST_DOCKET_PATHS_REGEX_SUFFIX;
+	public static final String REST_VERSION_5 = SLASH + REST_API_VERSION_5;
 	public static final String REST_VERSION_5_DOCKET_PATHS_REGEX = REST_VERSION_5
 		+ REST_DOCKET_PATHS_REGEX_SUFFIX;
 
