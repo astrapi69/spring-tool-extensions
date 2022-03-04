@@ -8,6 +8,7 @@ ADDED:
 
 - new generic class AuthenticationPrincipalResolver for resolve the current user
 - new generic class GenericPrincipal that implements the spring interface UserDetails
+- new enum class ApplicationHeaderKeyName for the header key names
 
 Version 1.12
 -------------
