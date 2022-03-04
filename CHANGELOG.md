@@ -4,7 +4,10 @@
 Version 2-SNAPSHOT
 -------------
 
+ADDED:
 
+- new generic class AuthenticationPrincipalResolver for resolve the current user
+- new generic class GenericPrincipal that implements the spring interface UserDetails
 
 Version 1.12
 -------------

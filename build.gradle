@@ -239,6 +239,7 @@ dependencies {
     implementation("org.springframework:spring-webmvc:$springVersion")
     implementation("org.springframework:spring-orm:$springVersion")
     implementation("org.springframework.data:spring-data-jpa:$springDataJpaVersion")
+    implementation("org.springframework.security:spring-security-core:$springSecurityVersion")
     implementation("net.sf.ehcache:ehcache:$ehcacheVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
