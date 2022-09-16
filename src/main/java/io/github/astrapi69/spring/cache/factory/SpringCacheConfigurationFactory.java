@@ -40,7 +40,7 @@ import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.cache.support.CompositeCacheManager;
 import org.springframework.core.io.ClassPathResource;
 
-import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.collection.list.ListFactory;
 
 /**
  * A factory class for creating cache configuration objects.

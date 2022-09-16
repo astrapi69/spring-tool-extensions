@@ -30,8 +30,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.astrapi69.collections.array.ArrayFactory;
-import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collection.array.ArrayFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 
 class UrlExtensionsTest
 {
