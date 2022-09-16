@@ -1,6 +1,21 @@
 ## Change log
 ----------------------
 
+Version 2
+-------------
+
+ADDED:
+
+- new generic class AuthenticationPrincipalResolver for resolve the current user
+- new generic class GenericPrincipal that implements the spring interface UserDetails
+- new enum class ApplicationHeaderKeyName for the header key names
+
+CHANGED:
+
+- update of jdk to version 11
+- update gradle to new patch version 7.5.1
+- update of lombok version to 1.18.24
+
 Version 1.12
 -------------
 

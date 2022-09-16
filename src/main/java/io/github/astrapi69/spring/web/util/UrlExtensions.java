@@ -32,7 +32,7 @@ import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.astrapi69.collections.array.ArrayFactory;
+import io.github.astrapi69.collection.array.ArrayFactory;
 
 @UtilityClass
 public class UrlExtensions
