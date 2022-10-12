@@ -4,6 +4,18 @@
 Version 2.1-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of gradle plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new version 6.3.0
+- update of gradle plugin dependency 'io.freefair.gradle:lombok-plugin' to new version 6.4.1
+- update of dependency spring to new version 5.3.16
+- update of dependency spring-data to new version 2.7.2
+- update of dependency bean-mapper-api to new version 2
+- update of dependency generic-mapper to new version 3
+- update of dependency data-api to new version 4
+- update of dependency silly-collection to new version 20.1
+- update of test dependency junit-jupiter-api to new version 5.9.1
+
 Version 2
 -------------
 

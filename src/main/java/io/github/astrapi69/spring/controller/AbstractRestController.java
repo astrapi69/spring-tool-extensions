@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import io.github.astrapi69.bean.mapper.GenericModelMapper;
+import io.github.astrapi69.model.mapper.GenericModelMapper;
 import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.data.identifiable.Identifiable;
 import io.github.astrapi69.spring.service.api.GenericService;
