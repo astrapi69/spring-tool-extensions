@@ -135,11 +135,10 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 	 * @see EntityManager#getReference(Class, Object) for details on when an exception is thrown.
 	 * @deprecated use {@link GenericService#getById(ID)} instead.
 	 */
-	@Deprecated
-	default ENTITY getOne(@NonNull ID id)
-	{
-		return getRepository().getById(id);
-	}
+	// default ENTITY getOne(@NonNull ID id)
+	// {
+	// return getRepository().getById(id);
+	// }
 
 	REPOSITORY getRepository();
 
