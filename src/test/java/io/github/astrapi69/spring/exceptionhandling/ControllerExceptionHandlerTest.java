@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -43,6 +43,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -105,7 +106,7 @@ public class ControllerExceptionHandlerTest
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
 			.handleException(exception, httpServletRequest);
-		HttpStatus statusCode = responseEntity.getStatusCode();
+		HttpStatusCode statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
@@ -123,7 +124,7 @@ public class ControllerExceptionHandlerTest
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
 			.handleIllegalArgumentException(illegalArgumentException, httpServletRequest);
-		HttpStatus statusCode = responseEntity.getStatusCode();
+		HttpStatusCode statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.BAD_REQUEST, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
@@ -141,7 +142,7 @@ public class ControllerExceptionHandlerTest
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
 			.handleNoSuchElementException(noSuchElementException, httpServletRequest);
-		HttpStatus statusCode = responseEntity.getStatusCode();
+		HttpStatusCode statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.NOT_FOUND, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);
@@ -159,7 +160,7 @@ public class ControllerExceptionHandlerTest
 		when(fieldError.getDefaultMessage()).thenReturn("An error");
 		ResponseEntity<Object> responseEntity = controllerExceptionHandler
 			.handleUnsupportedOperationException(unsupportedOperationException, httpServletRequest);
-		HttpStatus statusCode = responseEntity.getStatusCode();
+		HttpStatusCode statusCode = responseEntity.getStatusCode();
 		assertEquals(HttpStatus.METHOD_NOT_ALLOWED, statusCode);
 		Object body = responseEntity.getBody();
 		assertTrue(body instanceof ExceptionViewModel);

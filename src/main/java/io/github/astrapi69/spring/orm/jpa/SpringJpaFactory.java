@@ -135,7 +135,7 @@ public class SpringJpaFactory
 	 * @return the new {@link JpaTransactionManager}
 	 */
 	public static JpaTransactionManager newTransactionManager(
-		EntityManagerFactory entityManagerFactory)
+		jakarta.persistence.EntityManagerFactory entityManagerFactory)
 	{
 		final JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory);

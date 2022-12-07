@@ -26,7 +26,7 @@ package io.github.astrapi69.spring.exceptionhandling;
 
 import java.time.LocalDateTime;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.experimental.UtilityClass;
 

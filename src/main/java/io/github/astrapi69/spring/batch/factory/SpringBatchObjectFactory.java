@@ -26,9 +26,9 @@ package io.github.astrapi69.spring.batch.factory;
 
 import java.time.format.DateTimeFormatter;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import jakarta.persistence.EntityManagerFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
