@@ -3,7 +3,7 @@ dependencies {
 
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     compileOnly("javax.persistence:javax.persistence-api:$javaxPersistenceApiVersion")
-    implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    implementation("jakarta.servlet:jakarta.servlet-api:$jakartaServletApiVersion")
     implementation("javax.validation:validation-api:$validationApiVersion")
     implementation("io.github.astrapi69:data-api:$dataApiVersion")
     implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
@@ -17,7 +17,6 @@ dependencies {
     implementation("io.swagger:swagger-annotations:$swaggerAnnotationsVersion")
     implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
     implementation("org.hibernate:hibernate-core:$hibernateCoreVersion")
-    implementation("javax.servlet:javax.servlet-api:$javaxServletApiVersion")
     implementation("org.apache.commons:commons-lang3:$commonsLang3Version")
     implementation("org.springframework.batch:spring-batch-infrastructure:$springBatchInfrastructureVersion")
     implementation("org.springframework:spring-context:$springVersion")
