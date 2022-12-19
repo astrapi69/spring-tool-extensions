@@ -26,7 +26,9 @@ package io.github.astrapi69.hibernate.generator;
 
 import java.io.Serializable;
 
+import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
 import io.github.astrapi69.data.identifiable.Identifiable;
@@ -45,7 +47,8 @@ public class IdentifiableSequenceStyleGenerator extends SequenceStyleGenerator
 	public static final String STRATEGY_CLASS_NAME = "io.github.astrapi69.hibernate.generator.IdentifiableSequenceStyleGenerator";
 
 	@SuppressWarnings("rawtypes")
-	public Serializable generate(SessionImplementor session, Object object)
+	public Object generate(SharedSessionContractImplementor session, Object object)
+		throws HibernateException
 	{
 		if (object instanceof Identifiable)
 		{

@@ -29,8 +29,6 @@ import java.util.List;
 import lombok.experimental.UtilityClass;
 
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.CacheResolver;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -38,7 +36,6 @@ import org.springframework.cache.interceptor.SimpleCacheErrorHandler;
 import org.springframework.cache.interceptor.SimpleCacheResolver;
 import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.cache.support.CompositeCacheManager;
-import org.springframework.core.io.ClassPathResource;
 
 import io.github.astrapi69.collection.list.ListFactory;
 
@@ -105,39 +102,6 @@ public class SpringCacheConfigurationFactory
 	public static CacheErrorHandler newSimpleCacheErrorHandler()
 	{
 		return new SimpleCacheErrorHandler();
-	}
-
-	/**
-	 * Factory method for create the new {@link EhCacheManagerFactoryBean} object from the given
-	 * file name as {@link String} object.
-	 *
-	 * @param ehcacheXmlFilename
-	 *            the xml filename
-	 * @return the new {@link EhCacheManagerFactoryBean}
-	 */
-	public static EhCacheManagerFactoryBean newEhCacheManagerFactoryBean(
-		final String ehcacheXmlFilename)
-	{
-		final EhCacheManagerFactoryBean cacheManagerFactoryBean = new EhCacheManagerFactoryBean();
-		cacheManagerFactoryBean.setConfigLocation(new ClassPathResource(ehcacheXmlFilename));
-		cacheManagerFactoryBean.setShared(true);
-		return cacheManagerFactoryBean;
-	}
-
-	/**
-	 * Factory method for create the new {@link EhCacheCacheManager} object from the given
-	 * {@link EhCacheManagerFactoryBean} object.
-	 *
-	 * @param cacheManagerFactoryBean
-	 *            the {@link EhCacheManagerFactoryBean} object
-	 * @return the new {@link EhCacheCacheManager}
-	 */
-	public static EhCacheCacheManager newEhCacheCacheManager(
-		final EhCacheManagerFactoryBean cacheManagerFactoryBean)
-	{
-		final EhCacheCacheManager cacheManger = new EhCacheCacheManager(
-			cacheManagerFactoryBean.getObject());
-		return cacheManger;
 	}
 
 }

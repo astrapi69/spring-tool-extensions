@@ -26,7 +26,7 @@ package io.github.astrapi69.spring.exceptionhandling;
 
 import java.util.NoSuchElementException;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +59,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected ResponseEntity<Object> handleBindException(BindException exception,
 		HttpHeaders headers, HttpStatus status, WebRequest request)
 	{
