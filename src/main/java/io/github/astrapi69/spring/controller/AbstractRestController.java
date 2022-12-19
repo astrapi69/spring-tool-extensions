@@ -49,9 +49,8 @@ import io.github.astrapi69.model.mapper.GenericModelMapper;
 import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.data.identifiable.Identifiable;
 import io.github.astrapi69.spring.service.api.GenericService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
 
 @Getter
 @AllArgsConstructor
@@ -63,9 +62,7 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 
 	GenericService<ENTITY, ID, REPOSITORY> service;
 
-	@ApiOperation(value = "Delete the given json object")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "json", value = "the json object to delete", paramType = "body") })
+	@Operation(summary = "Delete the given json object")
 	@RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<DTO> delete(@Valid @RequestBody DTO viewModel)
@@ -76,9 +73,7 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ApiOperation(value = "Delete the entity from the given id")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "the id from the entity to delete", paramType = "query") })
+	@Operation(summary = "Delete the entity from the given id")
 	public Map<String, Object> deleteById(@PathVariable ID id)
 	{
 		Optional<ENTITY> optionalEntity = this.service.findById(id);
@@ -98,15 +93,13 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Find all entities")
+	@Operation(summary = "Find all entities")
 	public ResponseEntity<Iterable<DTO>> findAll()
 	{
 		return ResponseEntity.ok(mapper.toDtos(this.service.findAll()));
 	}
 
-	@ApiOperation(value = "Get the entity from the given id")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query") })
+	@Operation(summary = "Get the entity from the given id")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DTO> get(@PathVariable ID id)
 	{
@@ -115,9 +108,7 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 			.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	@ApiOperation(value = "Saves the given json object")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
+	@Operation(summary = "Saves the given json object")
 	@RequestMapping(method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -129,16 +120,14 @@ public class AbstractRestController<ENTITY extends Identifiable<ID>, ID extends 
 		return ResponseEntity.ok(dto);
 	}
 
-	@ApiOperation(value = "Update the entity from the given id with the given new json object")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "the id from the entity to get", paramType = "query"),
-			@ApiImplicitParam(name = "json", value = "the json object to save", paramType = "body") })
+	@Operation(summary = "Update the entity from the given id with the given new json object")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO json)
 	{
 		return Optional.ofNullable(this.service.getById(id)).map(entity -> {
-			ENTITY updatedEntity = this.service.save(entity);
+			ENTITY entityToUpdate = mapper.toEntity(json);
+			ENTITY updatedEntity = this.service.save(entityToUpdate);
 			return new ResponseEntity<>(mapper.toDto(updatedEntity), HttpStatus.OK);
 		}).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}

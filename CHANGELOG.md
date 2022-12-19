@@ -3,7 +3,18 @@
 
 Version 3-SNAPSHOT
 -------------
+ADDED:
 
+- new dependency org.springdoc:springdoc-openapi-ui for the migration to openapi
+- new abstract configuration class for openapi
+
+CHANGED:
+
+- update of gradle plugin dependency 'io.freefair.gradle:lombok-plugin' to new version 6.6.1
+- removed dependency springfox-swagger-ui for the migration to openapi
+- removed abstract configuration class for swagger
+- update of dependency spring to new version 6.0.3
+- update of test dependency mockito-core to new version 4.10.0
 
 Version 2.1
 -------------
