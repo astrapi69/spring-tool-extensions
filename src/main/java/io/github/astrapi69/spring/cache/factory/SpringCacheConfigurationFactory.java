@@ -26,8 +26,6 @@ package io.github.astrapi69.spring.cache.factory;
 
 import java.util.List;
 
-import lombok.experimental.UtilityClass;
-
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.CacheResolver;
@@ -38,6 +36,7 @@ import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.cache.support.CompositeCacheManager;
 
 import io.github.astrapi69.collection.list.ListFactory;
+import lombok.experimental.UtilityClass;
 
 /**
  * A factory class for creating cache configuration objects.

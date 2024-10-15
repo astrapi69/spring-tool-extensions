@@ -26,13 +26,12 @@ package io.github.astrapi69.spring.web.util;
 
 import java.util.Map;
 
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
-
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import io.github.astrapi69.collection.array.ArrayFactory;
+import lombok.NonNull;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UrlExtensions

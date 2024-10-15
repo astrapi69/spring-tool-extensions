@@ -30,12 +30,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
+import org.springframework.validation.DataBinder;
+
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.validation.DataBinder;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomBeanWrapperFieldSetMapper<T> extends BeanWrapperFieldSetMapper<T>

@@ -26,11 +26,11 @@ package io.github.astrapi69.spring.editor;
 
 import java.beans.PropertyEditorSupport;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-
-import org.apache.commons.lang3.StringUtils;
 
 @SuppressWarnings("rawtypes")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

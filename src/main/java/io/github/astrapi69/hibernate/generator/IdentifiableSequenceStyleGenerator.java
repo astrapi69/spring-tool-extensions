@@ -24,14 +24,12 @@
  */
 package io.github.astrapi69.hibernate.generator;
 
-import java.io.Serializable;
 
 import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
-import io.github.astrapi69.data.identifiable.Identifiable;
+import io.github.astrapi69.data.identifiable.GenericIdentifiable;
 
 /**
  * The class {@link IdentifiableSequenceStyleGenerator} is custom implementation of
@@ -50,10 +48,10 @@ public class IdentifiableSequenceStyleGenerator extends SequenceStyleGenerator
 	public Object generate(SharedSessionContractImplementor session, Object object)
 		throws HibernateException
 	{
-		if (object instanceof Identifiable)
+		if (object instanceof GenericIdentifiable)
 		{
-			Identifiable identifiable = (Identifiable)object;
-			Serializable id = identifiable.getId();
+			GenericIdentifiable identifiable = (GenericIdentifiable)object;
+			Object id = identifiable.getId();
 			if (id != null)
 			{
 				return id;

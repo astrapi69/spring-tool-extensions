@@ -30,10 +30,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import lombok.experimental.UtilityClass;
-
 import org.apache.commons.lang3.reflect.TypeUtils;
 import org.springframework.core.ParameterizedTypeReference;
+
+import lombok.experimental.UtilityClass;
 
 /**
  * A factory for creating ParameterizedTypeReference objects.

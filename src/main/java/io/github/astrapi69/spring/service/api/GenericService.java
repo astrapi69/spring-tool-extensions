@@ -27,14 +27,13 @@ package io.github.astrapi69.spring.service.api;
 import java.io.Serializable;
 import java.util.Optional;
 
-import lombok.NonNull;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import io.github.astrapi69.data.identifiable.Identifiable;
+import lombok.NonNull;
 
 public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Serializable, REPOSITORY extends JpaRepository<ENTITY, ID>>
 {
@@ -116,7 +115,7 @@ public interface GenericService<ENTITY extends Identifiable<ID>, ID extends Seri
 
 	default ENTITY getById(@NonNull ID id)
 	{
-		return getRepository().getById(id);
+		return getRepository().getReferenceById(id);
 	}
 
 	REPOSITORY getRepository();

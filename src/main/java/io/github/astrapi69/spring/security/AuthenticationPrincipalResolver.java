@@ -39,6 +39,7 @@ public class AuthenticationPrincipalResolver
 		{
 			return Optional.empty();
 		}
+		@SuppressWarnings("unchecked")
 		T principal = (T)authentication.getPrincipal();
 		return Optional.of(principal);
 	}
