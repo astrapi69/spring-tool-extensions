@@ -1,4 +1,5 @@
 [versions]
+assertj-core-version = "3.26.3"
 bean-mapper-api-version = "2.3"
 commons-lang3-version = "3.17.0"
 data-api-version = "5"
@@ -38,7 +39,7 @@ throwable-version = "3"
 validation-api-version = "2.0.1.Final"
 
 [libraries]
-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj-core-version" }
 bean-mapper-api = { module = "io.github.astrapi69:bean-mapper-api", version.ref = "bean-mapper-api-version" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3-version" }
 data-api = { module = "io.github.astrapi69:data-api", version.ref = "data-api-version" }
@@ -52,6 +53,7 @@ jobj-reflect = { module = "io.github.astrapi69:jobj-reflect", version.ref = "job
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api-version" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine-version" }
 junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter-params-version" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok-version" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito-core-version" }
 modelmapper = { module = "org.modelmapper:modelmapper", version.ref = "modelmapper-version" }
@@ -78,35 +80,35 @@ annotation-processor = [
 ]
 # Dependencies required only at compile-time and not included in the final artifact
 compile-only = [
-    "lombok",
     "javax-persistence-api",
+    "lombok",
 ]
 # The core dependencies
 core-dependencies = [
-    "jakarta-servlet-api",
-    "validation-api",
-    "data-api",
     "bean-mapper-api",
+    "commons-lang3",
+    "data-api",
+    "ehcache",
     "generic-mapper",
-    "modelmapper",
-    "throwable",
-    "silly-collection",
-    "silly-bean",
+    "hibernate-core",
+    "jakarta-servlet-api",
     "jobj-core",
     "jobj-reflect",
-    "springdoc-openapi-ui",
-    "hibernate-core",
-    "commons-lang3",
+    "modelmapper",
+    "silly-bean",
+    "silly-collection",
     "spring-batch-infrastructure",
     "spring-context",
     "spring-context-support",
+    "spring-data-jpa",
     "spring-jdbc",
+    "spring-orm",
+    "spring-security-core",
     "spring-web",
     "spring-webmvc",
-    "spring-orm",
-    "spring-data-jpa",
-    "spring-security-core",
-    "ehcache",
+    "springdoc-openapi-ui",
+    "throwable",
+    "validation-api",
 ]
 # Annotation processor dependencies used specifically for test classes
 test-annotation-processor = [
@@ -123,10 +125,11 @@ test-runtime-only = [
 ]
 # Dependencies required for unit testing
 unit-testing = [
+    "assertj-core",
     "junit-jupiter",
     "junit-jupiter-params",
-    "spring-test",
     "mockito-core",
+    "spring-test",
 ]
 
 [plugins]
