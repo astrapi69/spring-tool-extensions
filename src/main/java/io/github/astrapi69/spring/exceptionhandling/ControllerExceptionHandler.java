@@ -26,12 +26,6 @@ package io.github.astrapi69.spring.exceptionhandling;
 
 import java.util.NoSuchElementException;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
-
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -44,6 +38,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import io.github.astrapi69.throwable.ExceptionExtensions;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 /**
  * The class {@link ControllerExceptionHandler} handles specified exceptions for rest controllers

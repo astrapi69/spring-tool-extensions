@@ -26,10 +26,6 @@ package io.github.astrapi69.spring.exceptionhandling;
 
 import java.time.LocalDateTime;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-import lombok.experimental.UtilityClass;
-
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -41,6 +37,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.github.astrapi69.throwable.ThrowableExtensions;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link ExceptionHandlerExtensions} holds factory methods for create the view model bean

@@ -28,13 +28,6 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,12 +38,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import io.github.astrapi69.model.mapper.GenericModelMapper;
 import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.data.identifiable.Identifiable;
+import io.github.astrapi69.model.mapper.GenericModelMapper;
 import io.github.astrapi69.spring.service.api.GenericService;
-
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @AllArgsConstructor

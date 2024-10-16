@@ -28,10 +28,6 @@ import java.time.format.DateTimeFormatter;
 
 import javax.sql.DataSource;
 
-import jakarta.persistence.EntityManagerFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
-
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JpaItemWriter;
@@ -45,6 +41,9 @@ import org.springframework.core.io.Resource;
 
 import io.github.astrapi69.reflection.ReflectionExtensions;
 import io.github.astrapi69.spring.batch.mapper.CustomBeanWrapperFieldSetMapper;
+import jakarta.persistence.EntityManagerFactory;
+import lombok.NonNull;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class SpringBatchObjectFactory

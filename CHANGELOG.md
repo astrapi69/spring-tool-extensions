@@ -1,6 +1,13 @@
 ## Change log
 ----------------------
 
+Version 3.1
+-------------
+
+CHANGED:
+
+- replaced all dependecies from 'javax.*' with 'jakarta.*'
+
 Version 3
 -------------
 ADDED:

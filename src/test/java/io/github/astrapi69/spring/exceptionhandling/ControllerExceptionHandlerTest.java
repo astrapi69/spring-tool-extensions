@@ -32,11 +32,6 @@ import static org.mockito.Mockito.when;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -51,6 +46,10 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.context.request.ServletWebRequest;
+
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ControllerExceptionHandler.class })

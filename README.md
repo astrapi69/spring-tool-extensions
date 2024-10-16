@@ -4,7 +4,7 @@
 
 [![Java CI with Gradle](https://github.com/astrapi69/spring-tool-extensions/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/spring-tool-extensions/actions/workflows/gradle.yml)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/spring-tool-extensions.svg?style=flat)](https://github.com/astrapi69/spring-tool-extensions/issues)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/spring-tool-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/spring-tool-extensions)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/spring-tool-extensions?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/spring-tool-extensions)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/spring-tool-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/spring-tool-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
@@ -21,56 +21,136 @@ Project that holds utility classes for the spring framework
 >
 > If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
+## Import dependencies to your project
+
+<details>
+  <summary>gradle (click to expand)</summary>
+
 ## gradle dependency
 
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if
-you want to import the core functionality of spring-tool-extensions:
+Replace the variable ${latestVersion} with the current latest
+version: [![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/spring-tool-extensions?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/spring-tool-extensions)
+
+You can first define the version in the ext section and add than the following gradle dependency to
+your project `build.gradle` if you want to import the core functionality of spring-tool-extensions:
 
 define version in file gradle.properties
 
 ```
-
-springToolExtensionsVersion=3
+springToolExtensionsVersion=${latestVersion}
 ```
 
 or in build.gradle ext area
 
 ```
-    springToolExtensionsVersion = "3"
+    springToolExtensionsVersion = "${latestVersion}"
 ```
 
-and than add the dependency to the dependencies area
+then add the dependency to the dependencies area
 
 ```
     implementation("io.github.astrapi69:spring-tool-extensions:$springToolExtensionsVersion")
 ```
 
+# with new libs.versions.toml file
+
+If you use the new libs.versions.toml file for new automatic catalog versions update
+
+```
+[versions]
+```
+```
+spring-tool-extensions-version= "${latestVersion}"
+```
+```
+[libraries]
+```
+```
+spring-tool-extensions = { module = "io.github.astrapi69:spring-tool-extensions", version.ref = "spring-tool-extensions-version" }
+```
+
+then add the dependency to the dependencies area
+
+```
+    implementation libs.spring.tool.extensions
+```
+
+</details>
+
+<details>
+  <summary>Maven (click to expand)</summary>
+
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~spring-tool-extensions~~~) for latest snapshots and releases.
+Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~spring-tool-extensions~~~)
+for latest snapshots and releases.
 
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of spring-tool-extensions:
+Add the following maven dependency to your project `pom.xml` if you want to import the core
+functionality of spring-tool-extensions:
 
-Than you can add the dependency to your dependencies:
+Then you can add the dependency to your dependencies:
 
     <properties>
-            ...
-        <!-- SPRING-TOOL-EXTENSIONS VERSION -->
-        <spring-tool-extensions.version>3</spring-tool-extensions.version>
-            ...
+        ...
+
+```xml
+        <!-- spring-tool-extensions version -->
+        <spring-tool-extensions.version>${latestVersion}</spring-tool-extensions.version>
+```
+
+        ...
     </properties>
-            ...
+        ...
         <dependencies>
-            ...
-            <!-- SPRING-TOOL-EXTENSIONS DEPENDENCY -->
+        ...
+
+```xml
+            <!-- spring-tool-extensions DEPENDENCY -->
             <dependency>
                 <groupId>io.github.astrapi69</groupId>
                 <artifactId>spring-tool-extensions</artifactId>
                 <version>${spring-tool-extensions.version}</version>
             </dependency>
-            ...
+```
+
+        ...
         </dependencies>
+
+</details>
+
+
+<details>
+  <summary>Snapshots (click to expand)</summary>
+
+## 📸 Snapshots
+
+[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/io/github/astrapi69/spring-tool-extensions/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/io/github/astrapi69/spring-tool-extensions/)
+
+This section describes how to import snapshot versions into your project.
+Add the following code snippet to your gradle file in the repositories section:
+
+```
+repositories {
+   //...
+```
+
+```groovy
+    maven {
+        name "Sonatype Nexus Snapshots"
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+```
+
+```
+}
+```
+
+</details>
 
 # Donations
 
