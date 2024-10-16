@@ -12,8 +12,9 @@ gradle-plugin-spotless-version = "7.0.0.BETA3"
 gradle-plugin-version-catalog-update-version = "0.8.4"
 gradle-plugin-versions-version = "0.51.0"
 hibernate-core-version = "7.0.0.Beta1"
+jakarta-persistence-api-version = "3.2.0"
 jakarta-servlet-api-version = "6.1.0"
-javax-persistence-api-version = "2.2"
+jakarta-validation-api-version = "3.1.0"
 jobj-core-version = "9.1"
 jobj-reflect-version = "2.4"
 junit-jupiter-api-version = "5.11.2"
@@ -36,7 +37,6 @@ spring-web-version = "6.1.13"
 spring-webmvc-version = "6.1.13"
 springdoc-openapi-ui-version = "1.8.0"
 throwable-version = "3"
-validation-api-version = "2.0.1.Final"
 
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj-core-version" }
@@ -46,8 +46,9 @@ data-api = { module = "io.github.astrapi69:data-api", version.ref = "data-api-ve
 ehcache = { module = "net.sf.ehcache:ehcache", version.ref = "ehcache-version" }
 generic-mapper = { module = "io.github.astrapi69:generic-mapper", version.ref = "generic-mapper-version" }
 hibernate-core = { module = "org.hibernate:hibernate-core", version.ref = "hibernate-core-version" }
+jakarta-persistence-api = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakarta-persistence-api-version" }
 jakarta-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api", version.ref = "jakarta-servlet-api-version" }
-javax-persistence-api = { module = "javax.persistence:javax.persistence-api", version.ref = "javax-persistence-api-version" }
+jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta-validation-api-version" }
 jobj-core = { module = "io.github.astrapi69:jobj-core", version.ref = "jobj-core-version" }
 jobj-reflect = { module = "io.github.astrapi69:jobj-reflect", version.ref = "jobj-reflect-version" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api-version" }
@@ -71,7 +72,6 @@ spring-web = { module = "org.springframework:spring-web", version.ref = "spring-
 spring-webmvc = { module = "org.springframework:spring-webmvc", version.ref = "spring-webmvc-version" }
 springdoc-openapi-ui = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "springdoc-openapi-ui-version" }
 throwable = { module = "io.github.astrapi69:throwable", version.ref = "throwable-version" }
-validation-api = { module = "javax.validation:validation-api", version.ref = "validation-api-version" }
 
 [bundles]
 # Dependencies for the annotation processor used during the compilation process
@@ -80,7 +80,7 @@ annotation-processor = [
 ]
 # Dependencies required only at compile-time and not included in the final artifact
 compile-only = [
-    "javax-persistence-api",
+    "jakarta-persistence-api",
     "lombok",
 ]
 # The core dependencies
@@ -92,6 +92,7 @@ core-dependencies = [
     "generic-mapper",
     "hibernate-core",
     "jakarta-servlet-api",
+    "jakarta-validation-api",
     "jobj-core",
     "jobj-reflect",
     "modelmapper",
@@ -108,7 +109,6 @@ core-dependencies = [
     "spring-webmvc",
     "springdoc-openapi-ui",
     "throwable",
-    "validation-api",
 ]
 # Annotation processor dependencies used specifically for test classes
 test-annotation-processor = [

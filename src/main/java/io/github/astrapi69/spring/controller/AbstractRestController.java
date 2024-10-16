@@ -28,8 +28,6 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,6 +43,7 @@ import io.github.astrapi69.data.identifiable.Identifiable;
 import io.github.astrapi69.model.mapper.GenericModelMapper;
 import io.github.astrapi69.spring.service.api.GenericService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -26,7 +26,6 @@ package io.github.astrapi69.spring.orm.jpa;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,6 +37,7 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import io.github.astrapi69.spring.datasource.DataSourceBean;
+import jakarta.persistence.EntityManagerFactory;
 
 
 /**

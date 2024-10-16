@@ -18,6 +18,7 @@ CHANGED:
 - removed abstract configuration class for swagger
 - update of dependency spring to new version 6.0.3
 - update of test dependency mockito-core to new version 4.10.0
+- replaced all dependecies from 'javax.*' with 'jakarta.*'
 
 Version 2.1
 -------------
