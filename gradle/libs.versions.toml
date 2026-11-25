@@ -1,7 +1,7 @@
 [versions]
 assertj-core-version = "3.26.3"
 bean-mapper-api-version = "2.3"
-commons-lang3-version = "3.17.0"
+commons-lang3-version = "3.18.0"
 data-api-version = "5"
 ehcache-version = "2.10.9.2"
 generic-mapper-version = "4.1"
