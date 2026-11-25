@@ -34,7 +34,7 @@ spring-orm-version = "6.1.13"
 spring-security-core-version = "6.5.10"
 spring-test-version = "6.1.13"
 spring-web-version = "6.1.21"
-spring-webmvc-version = "6.1.13"
+spring-webmvc-version = "7.0.9"
 springdoc-openapi-ui-version = "1.8.0"
 throwable-version = "3"
 
